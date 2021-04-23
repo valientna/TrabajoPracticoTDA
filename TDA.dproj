@@ -99,13 +99,15 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="Vistas\VisualDos.pas">
-            <Form>Form1</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="Vistas\VisualTres.pas">
             <Form>Form2</Form>
         </DCCReference>
+        <DCCReference Include="Vistas\VisualTres.pas">
+            <Form>Form3</Form>
+        </DCCReference>
         <DCCReference Include="Objetos\ArreglosDinamicos.pas"/>
+        <DCCReference Include="Vistas\ejercicio1.pas">
+            <Form>Form1</Form>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -131,6 +133,7 @@
                 <Platform value="Win32">True</Platform>
                 <Platform value="Win64">False</Platform>
             </Platforms>
+            <ModelSupport>False</ModelSupport>
         </BorlandProject>
         <ProjectFileVersion>12</ProjectFileVersion>
     </ProjectExtensions>

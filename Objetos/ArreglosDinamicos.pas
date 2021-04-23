@@ -79,7 +79,7 @@ Procedure Vector.QSort(aAsc: Boolean);
       if al_Firts < ll_Last Then
       Begin
         ll_temp := _Items[ll_Firts];
-        _Items[ll_Firts] := [ll_Firts + 1];
+        _Items[ll_Firts] := _Items[ll_Firts + 1];
         _Items[ll_Firts + 1] := ll_temp;
         ll_Firts := ll_Firts + 1;
         ll_Last := ll_Last -1;
@@ -119,7 +119,7 @@ Procedure Vector.QSort(aAsc: Boolean);
       if al_Firts <= ll_Last Then
       Begin
         ll_temp := _Items[ll_Firts];
-        _Items[ll_Firts] := [ll_Firts + 1];
+        _Items[ll_Firts] := _Items[ll_Firts + 1];
         _Items[ll_Firts + 1] := ll_temp;
 
         ll_Firts := ll_Firts + 1;
