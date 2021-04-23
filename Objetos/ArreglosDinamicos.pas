@@ -136,7 +136,7 @@ Procedure Vector.QSort(aAsc: Boolean);
       OrdDesc(ll_Firts, al_Last);
     End;
   End;
-
+                                  // asdasd
   // Proceso interno
 Begin
   If _nSize > min Then
