@@ -41,7 +41,7 @@ type
     EjercicioNueve1: TMenuItem;
     LimpiarMatriz1: TMenuItem;
     StringGrid3: TStringGrid;
-    Edit1: TEdit;
+    NroRowsAndColsEdit: TEdit;
     Label4: TLabel;
     Button1: TButton;
     Button2: TButton;
@@ -58,6 +58,7 @@ type
     procedure Button2Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -76,10 +77,15 @@ implementation
 {$R *.dfm}
 
 uses Principal, VisualUno, VisualDos;
-Procedure obtenerFilasColumnass();
+
+Procedure ActualizarFilasColumnas(ma1, ma2, ma3: TStringGrid);
 Begin
-   filas := 4;
-   columnas := 4;
+  ma1.ColCount := columnas;
+  ma1.RowCount := filas;
+  ma2.ColCount := columnas;
+  ma2.RowCount := filas;
+  ma3.ColCount := columnas;
+  ma3.RowCount := filas;
 End;
 
 Procedure CargarMatriz(var Matriz: Matriz; tsGrid: TStringGrid);
@@ -96,8 +102,6 @@ Begin
       valor := 1 + Random(100);
       Matriz[f][c] := valor;
       tsGrid.Cells[c, f] := valor.ToString;
-
-      obtenerFilasColumnass();
     End;
   End;
 End;
@@ -116,10 +120,8 @@ Begin
       uno := m1[f][c];
       dos := m2[f][c];
       ms[f][c] := uno + dos;
-      obtenerFilasColumnass();
     End;
   End;
-  obtenerFilasColumnass();
   res := 0;
 
   for fi := 0 TO filas DO
@@ -128,7 +130,6 @@ Begin
     Begin
       res := ms[fi][co];
       tsGrid.Cells[co, fi] := res.ToString;
-      obtenerFilasColumnass();
     End;
     res := 0;
   End;
@@ -145,13 +146,19 @@ Begin
     Begin
       matriz[f][c] := 0;
       tsGrid.Cells[c, f] := '0';
-      obtenerFilasColumnass();
     End;
   End;
 
 End;
-
-// EVENTOS MAIN MENU
+// START EVENTOS DEL FORMULARIO
+procedure TForm3.Button1Click(Sender: TObject);
+var ress: Integer;
+begin
+  ress := StrToInt(NroRowsAndColsEdit.Text);
+  filas := ress;
+  columnas := ress;
+  ActualizarFilasColumnas(StringGrid1, StringGrid2, StringGrid3);
+end;
 
 procedure TForm3.Button2Click(Sender: TObject);
 begin
@@ -190,8 +197,8 @@ begin
   Form3.Hide;
   Form2.Show;
 end;
-
-// END EVENTOS MAIN MENU
+// END EVENTOS DEL FORMULARIO
+// START EVENTOS MAIN MENU
 procedure TForm3.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   PrincipalForm.Show;
@@ -205,7 +212,6 @@ end;
 
 procedure TForm3.LimpiarMatriz1Click(Sender: TObject);
 begin
-  obtenerFilasColumnass();
   LimpiarMatriz(m1, StringGrid1);
   LimpiarMatriz(m2, StringGrid2);
   LimpiarMatriz(m3, StringGrid3);
@@ -218,10 +224,9 @@ end;
 
 procedure TForm3.SumarMatriz1Click(Sender: TObject);
 begin
-  //
   SumaMatriz(m3, StringGrid3);
 end;
-
+// END EVENTOS MAIN MENU
 
 
 end.

@@ -121,15 +121,15 @@ object Form3: TForm3
         FixedRows = 0
         TabOrder = 2
       end
-      object Edit1: TEdit
+      object NroRowsAndColsEdit: TEdit
         Left = 172
         Top = 237
         Width = 61
         Height = 28
-        MaxLength = 10
+        MaxLength = 2
         NumbersOnly = True
         TabOrder = 3
-        Text = 'MAX 10'
+        Text = '4'
       end
       object Button1: TButton
         Left = 25
@@ -138,6 +138,7 @@ object Form3: TForm3
         Height = 41
         Caption = 'Setear Filas y Columnas'
         TabOrder = 4
+        OnClick = Button1Click
       end
       object Button2: TButton
         Left = 25
