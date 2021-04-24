@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Grids, Vcl.Menus, Vcl.StdCtrls,
-  Vcl.WinXPanels, Vcl.ExtCtrls, Math;
+  Vcl.WinXPanels, Vcl.ExtCtrls, Math, Vcl.ComCtrls;
 
 const
   MaxFilas = 10;
@@ -47,6 +47,9 @@ type
     Button2: TButton;
     Button3: TButton;
     Button4: TButton;
+    TabControl1: TTabControl;
+    Panel1: TPanel;
+    Panel2: TPanel;
     procedure CargarMatriz1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure EjercicioUno1Click(Sender: TObject);
@@ -59,6 +62,7 @@ type
     procedure Button4Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure TabControl1Change(Sender: TObject);
   private
     { Private declarations }
   public
@@ -226,6 +230,20 @@ procedure TForm3.SumarMatriz1Click(Sender: TObject);
 begin
   SumaMatriz(m3, StringGrid3);
 end;
+procedure TForm3.TabControl1Change(Sender: TObject);
+begin
+  if (TabControl1.TabIndex = 0)then
+  Begin
+     Panel1.Visible := true;
+     Panel2.Visible := false;
+  End
+  Else If (TabControl1.TabIndex = 1)then
+  Begin
+     Panel1.Visible := false;
+     Panel2.Visible := true;
+  End;
+end;
+
 // END EVENTOS MAIN MENU
 
 

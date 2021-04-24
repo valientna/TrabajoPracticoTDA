@@ -2,8 +2,8 @@ object Form3: TForm3
   Left = 0
   Top = 0
   Caption = 'Ejercicio 3'
-  ClientHeight = 380
-  ClientWidth = 741
+  ClientHeight = 463
+  ClientWidth = 802
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -16,156 +16,210 @@ object Form3: TForm3
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 20
-  object CardPanel1: TCardPanel
+  object TabControl1: TTabControl
     Left = 0
     Top = 0
-    Width = 741
-    Height = 380
+    Width = 802
+    Height = 463
     Align = alClient
-    ActiveCard = Card1
-    BevelOuter = bvNone
-    Caption = 'CardPanel1'
     TabOrder = 0
-    ExplicitLeft = 256
-    ExplicitTop = 24
-    ExplicitWidth = 300
-    ExplicitHeight = 200
-    object Card1: TCard
-      Left = 0
-      Top = 0
-      Width = 741
-      Height = 380
-      Caption = 'Card1'
-      CardIndex = 0
+    Tabs.Strings = (
+      'as'
+      'asd')
+    TabIndex = 0
+    OnChange = TabControl1Change
+    ExplicitTop = 8
+    ExplicitWidth = 741
+    ExplicitHeight = 380
+    object Panel2: TPanel
+      Left = 4
+      Top = 31
+      Width = 794
+      Height = 428
+      Align = alClient
+      BevelOuter = bvNone
+      Caption = 'Panel2'
+      Color = clWhite
+      Ctl3D = True
+      ParentBackground = False
+      ParentCtl3D = False
       TabOrder = 0
-      ExplicitLeft = 57
-      ExplicitTop = 41
-      ExplicitWidth = 298
-      ExplicitHeight = 198
-      object Label1: TLabel
-        Left = 385
-        Top = 195
-        Width = 70
-        Height = 23
-        Caption = 'Resultado'
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -19
-        Font.Name = 'Arial Narrow'
-        Font.Style = []
-        ParentFont = False
-      end
-      object Label2: TLabel
-        Left = 25
-        Top = 16
-        Width = 70
-        Height = 23
-        Caption = 'Resultado'
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -19
-        Font.Name = 'Arial Narrow'
-        Font.Style = []
-        ParentFont = False
-      end
-      object Label3: TLabel
-        Left = 385
-        Top = 16
-        Width = 70
-        Height = 23
-        Caption = 'Resultado'
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -19
-        Font.Name = 'Arial Narrow'
-        Font.Style = []
-        ParentFont = False
-      end
-      object Label4: TLabel
-        Left = 25
-        Top = 240
-        Width = 141
-        Height = 20
-        Caption = 'N'#176' de Filas y Columnas'
-      end
-      object StringGrid1: TStringGrid
-        Left = 25
-        Top = 56
-        Width = 265
-        Height = 105
-        ColCount = 4
-        FixedCols = 0
-        RowCount = 4
-        FixedRows = 0
+      Visible = False
+      ExplicitLeft = 5
+      ExplicitWidth = 733
+      ExplicitHeight = 345
+    end
+    object Panel1: TPanel
+      Left = 4
+      Top = 31
+      Width = 794
+      Height = 428
+      Align = alClient
+      BevelOuter = bvNone
+      Caption = 'Panel1'
+      TabOrder = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      object CardPanel1: TCardPanel
+        AlignWithMargins = True
+        Left = 3
+        Top = 3
+        Width = 788
+        Height = 422
+        Align = alClient
+        ActiveCard = Card1
+        AutoSize = True
+        BevelOuter = bvNone
+        Caption = 'CardPanel1'
         TabOrder = 0
-      end
-      object StringGrid2: TStringGrid
-        Left = 385
-        Top = 56
-        Width = 265
-        Height = 105
-        ColCount = 4
-        FixedCols = 0
-        RowCount = 4
-        FixedRows = 0
-        TabOrder = 1
-      end
-      object StringGrid3: TStringGrid
-        Left = 385
-        Top = 232
-        Width = 265
-        Height = 105
-        ColCount = 4
-        FixedCols = 0
-        RowCount = 4
-        FixedRows = 0
-        TabOrder = 2
-      end
-      object NroRowsAndColsEdit: TEdit
-        Left = 172
-        Top = 237
-        Width = 61
-        Height = 28
-        MaxLength = 2
-        NumbersOnly = True
-        TabOrder = 3
-        Text = '4'
-      end
-      object Button1: TButton
-        Left = 25
-        Top = 271
-        Width = 208
-        Height = 41
-        Caption = 'Setear Filas y Columnas'
-        TabOrder = 4
-        OnClick = Button1Click
-      end
-      object Button2: TButton
-        Left = 25
-        Top = 336
-        Width = 75
-        Height = 25
-        Caption = 'Cargar'
-        TabOrder = 5
-        OnClick = Button2Click
-      end
-      object Button3: TButton
-        Left = 120
-        Top = 336
-        Width = 75
-        Height = 25
-        Caption = 'Sumar'
-        TabOrder = 6
-        OnClick = Button3Click
-      end
-      object Button4: TButton
-        Left = 215
-        Top = 336
-        Width = 75
-        Height = 25
-        Caption = 'Limpiar'
-        TabOrder = 7
-        OnClick = Button4Click
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 794
+        ExplicitHeight = 428
+        object Card1: TCard
+          AlignWithMargins = True
+          Left = 3
+          Top = 3
+          Width = 782
+          Height = 416
+          Caption = 'Card1'
+          CardIndex = 0
+          Color = clWhite
+          ParentBackground = False
+          TabOrder = 0
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 794
+          ExplicitHeight = 428
+          object Label1: TLabel
+            Left = 385
+            Top = 195
+            Width = 70
+            Height = 23
+            Caption = 'Resultado'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -19
+            Font.Name = 'Arial Narrow'
+            Font.Style = []
+            ParentFont = False
+          end
+          object Label2: TLabel
+            Left = 25
+            Top = 16
+            Width = 70
+            Height = 23
+            Caption = 'Resultado'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -19
+            Font.Name = 'Arial Narrow'
+            Font.Style = []
+            ParentFont = False
+          end
+          object Label3: TLabel
+            Left = 385
+            Top = 16
+            Width = 70
+            Height = 23
+            Caption = 'Resultado'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -19
+            Font.Name = 'Arial Narrow'
+            Font.Style = []
+            ParentFont = False
+          end
+          object Label4: TLabel
+            Left = 25
+            Top = 245
+            Width = 141
+            Height = 20
+            Caption = 'N'#176' de Filas y Columnas'
+          end
+          object StringGrid1: TStringGrid
+            Left = 25
+            Top = 56
+            Width = 265
+            Height = 105
+            BevelOuter = bvNone
+            ColCount = 4
+            FixedCols = 0
+            RowCount = 4
+            FixedRows = 0
+            TabOrder = 0
+          end
+          object StringGrid2: TStringGrid
+            Left = 385
+            Top = 56
+            Width = 265
+            Height = 105
+            BevelOuter = bvNone
+            ColCount = 4
+            FixedCols = 0
+            RowCount = 4
+            FixedRows = 0
+            TabOrder = 1
+          end
+          object StringGrid3: TStringGrid
+            Left = 385
+            Top = 232
+            Width = 265
+            Height = 105
+            BevelOuter = bvNone
+            ColCount = 4
+            FixedCols = 0
+            RowCount = 4
+            FixedRows = 0
+            TabOrder = 2
+          end
+          object NroRowsAndColsEdit: TEdit
+            Left = 172
+            Top = 237
+            Width = 61
+            Height = 28
+            MaxLength = 2
+            NumbersOnly = True
+            TabOrder = 3
+            Text = '4'
+          end
+          object Button1: TButton
+            Left = 25
+            Top = 271
+            Width = 208
+            Height = 41
+            Caption = 'Setear Filas y Columnas'
+            TabOrder = 4
+            OnClick = Button1Click
+          end
+          object Button2: TButton
+            Left = 25
+            Top = 336
+            Width = 75
+            Height = 25
+            Caption = 'Cargar'
+            TabOrder = 5
+            OnClick = Button2Click
+          end
+          object Button3: TButton
+            Left = 120
+            Top = 336
+            Width = 75
+            Height = 25
+            Caption = 'Sumar'
+            TabOrder = 6
+            OnClick = Button3Click
+          end
+          object Button4: TButton
+            Left = 215
+            Top = 336
+            Width = 75
+            Height = 25
+            Caption = 'Limpiar'
+            TabOrder = 7
+            OnClick = Button4Click
+          end
+        end
       end
     end
   end
