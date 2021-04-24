@@ -9,17 +9,12 @@ uses
 type
   TForm1 = class(TForm)
     RadioGroup1: TRadioGroup;
-    Rbsumar: TRadioButton;
-    Rbrestar: TRadioButton;
-    Rbmultiplicar: TRadioButton;
-    Rbdividir: TRadioButton;
-    Rbpotencia: TRadioButton;
-    Rbcomparar: TRadioButton;
     Button1: TButton;
     procedure Button1Click(Sender: TObject);
   private
     n1:integer;
     n2:integer;
+    procedure getSelectRadButton();
   public
     function sumar(n1,n2:integer):integer;
     function restar(n1,n2:integer):integer;
@@ -54,12 +49,12 @@ var producto: integer;
 
  end;
 
- function dividir(n1,n2:integer):integer;
+ function TForm1.dividir(n1,n2:integer):integer;
 var division: integer;
 begin
   division := n1/n2;
 end;
-function potenciacion(n1,n2:integer):integer;
+function TForm1.potenciacion(n1,n2:integer):integer;
 var potencia,i : integer;
 begin
   i = 1;
@@ -67,7 +62,7 @@ begin
   for i := 1 to n2 do
     potencia := potencia *n1
 end;
-function Mayor_menor_igual(n1,n2:integer):str;
+function TForm1.Mayor_menor_igual(n1,n2:integer):str;
 var resultado : str;
 begin
   if n1 > n2 then
@@ -80,31 +75,42 @@ begin
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
-
 begin
   n1:= inputbox('Primer numer0', 'Ingrese un número entero:','0').ToInteger();
 
   n2:= inputbox('Segundo numero', 'Ingrese un número entero:','0').ToInteger();
+
+  getSelectRadButton();
+
   end;
-begin
-  if Rbsumar.Checked then
-    sumar(n1,n2);
-    else
-      if Rbrestar.Checked then
-        restar(n1,n2);
-        else
-          if Rbmultiplicar.Checked then
-            multiplicar(n1,n2);
-            else
-              if Rbdividir.checked then
-                dividir(n1,n2);
-                else
-                  if Rbpotenciacion.checked then
-                    potenciacion(n1,n2);
-                    else
-                      Mayor_menor_igual(n1,n2);
 
+procedure TForm1.getSelectRadButton();
+Begin
+  if RadioGroup1.ItemIndex = 0 then
+  Begin
 
-end;
+  End
+  Else if RadioGroup1.ItemIndex = 1 then
+  Begin
+
+  End
+  Else if RadioGroup1.ItemIndex = 2 then
+  Begin
+
+  End
+  Else if RadioGroup1.ItemIndex = 3 then
+  Begin
+
+  End
+  Else if RadioGroup1.ItemIndex = 4 then
+  Begin
+
+  End
+  Else if RadioGroup1.ItemIndex = 5 then
+  Begin
+
+  End
+End;
+
 
 end.
