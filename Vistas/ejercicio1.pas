@@ -21,7 +21,7 @@ type
     function multiplicar(n1,n2:integer):integer;
     function dividir(n1,n2:integer):integer;
     function potenciacion(n1,n2:integer):integer;
-    function Mayor_menor_igual(n1,n2:integer):string;
+    function Mayor_menor_igual(n1,n2:integer):str;
   end;
 
 var
@@ -52,18 +52,18 @@ var producto: integer;
  function TForm1.dividir(n1,n2:integer):integer;
 var division: integer;
 begin
-  division := n1 div n2;
+  division := n1/n2;
 end;
 function TForm1.potenciacion(n1,n2:integer):integer;
 var potencia,i : integer;
 begin
-  i := 1;
+  i = 1;
   potencia :=1;
   for i := 1 to n2 do
     potencia := potencia *n1
 end;
-function TForm1.Mayor_menor_igual(n1,n2:integer):string;
-var resultado : string;
+function TForm1.Mayor_menor_igual(n1,n2:integer):str;
+var resultado : str;
 begin
   if n1 > n2 then
     resultado := 'mayor'
