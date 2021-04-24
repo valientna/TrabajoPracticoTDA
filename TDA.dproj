@@ -119,6 +119,10 @@
         <DCCReference Include="Vistas\ejercicio1.pas">
             <Form>Form1</Form>
         </DCCReference>
+        <DCCReference Include="Vistas\Principal.pas">
+            <Form>PrincipalForm</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="rrrr">
             <Key>Cfg_8</Key>
             <CfgParent>Base</CfgParent>
