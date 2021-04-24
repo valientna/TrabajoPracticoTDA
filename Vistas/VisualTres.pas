@@ -20,5 +20,5 @@ var
 implementation
 
 {$R *.dfm}
-   //asdasdasd
+   //asdasdasd        asd
 end.
