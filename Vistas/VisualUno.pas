@@ -1,4 +1,4 @@
-unit ejercicio1;
+unit VisualUno;
 
 interface
 
@@ -24,7 +24,7 @@ type
     EjercicioUno1: TMenuItem;
     EjercicioDos1: TMenuItem;
     EjercicioTres1: TMenuItem;
-    Cuatro1: TMenuItem;
+    EjercicioCuatro1: TMenuItem;
     EjercicioCinco1: TMenuItem;
     EjercicioSeis1: TMenuItem;
     EjercicioSiete1: TMenuItem;
@@ -33,6 +33,12 @@ type
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure EjercicioUno1Click(Sender: TObject);
+    procedure EjercicioDos1Click(Sender: TObject);
+    procedure EjercicioTres1Click(Sender: TObject);
+    procedure EjercicioCuatro1Click(Sender: TObject);
+    procedure EjercicioCinco1Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     n1:integer;
     n22:integer;
@@ -53,7 +59,9 @@ implementation
 
 {$R *.dfm}
 
-uses VisualDos;
+uses Principal, VisualDos, VisualTres;
+
+
 function TForm1.sumar(n1,n22:integer):integer;
 var suma: integer;
 begin
@@ -78,7 +86,7 @@ begin
    multiplicar := producto;
 end;
 
- procedure TForm1.Button2Click(Sender: TObject);
+procedure TForm1.Button2Click(Sender: TObject);
 begin
   //Form2.Visible := true;
   //Form1.Visible := false;
@@ -91,9 +99,42 @@ begin
 
   dividir := division;
 end;
+
+procedure TForm1.EjercicioCinco1Click(Sender: TObject);
+begin
+//
+end;
+
+procedure TForm1.EjercicioCuatro1Click(Sender: TObject);
+begin
+//
+end;
+
+procedure TForm1.EjercicioTres1Click(Sender: TObject);
+begin
+//
+end;
+
+procedure TForm1.EjercicioDos1Click(Sender: TObject);
+begin
+  VisualDos.Form2.Show;
+end;
+
+procedure TForm1.EjercicioUno1Click(Sender: TObject);
+begin
+//
+end;
+
+procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Form1.Hide;
+  PrincipalForm.Show;
+end;
+
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   //Form1.Visible := true;
+
 end;
 
 function TForm1.potenciacion(n1,n22:integer):integer;
@@ -106,6 +147,7 @@ begin
 
   potenciacion := potencia;
 end;
+
 function TForm1.Mayor_menor_igual(n1,n22:integer):string;
 var resultado : string;
 begin
@@ -163,6 +205,7 @@ Begin
 
 
   End;
+
 
 
 end.

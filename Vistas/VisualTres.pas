@@ -37,6 +37,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure EjercicioUno1Click(Sender: TObject);
     procedure EjercicioDos1Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -53,6 +54,8 @@ var
 implementation
 
 {$R *.dfm}
+
+uses Principal, VisualUno, VisualDos;
 
 Procedure CargarMatriz(var matriz : Matriz; tsGrid : TStringGrid);
 var f, c : integer;
@@ -93,6 +96,11 @@ begin
 end;
 
 // END EVENTOS MAIN MENU
+procedure TForm3.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Form3.Hide;
+  PrincipalForm.Show;
+end;
 
 procedure TForm3.FormShow(Sender: TObject);
 begin

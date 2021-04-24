@@ -2,11 +2,11 @@ program TDA;
 
 uses
   Vcl.Forms,
-  VisualDos in 'Vistas\VisualDos.pas' {Form2},
-  VisualTres in 'Vistas\VisualTres.pas' {Form3},
   ArreglosDinamicos in 'Objetos\ArreglosDinamicos.pas',
-  ejercicio1 in 'Vistas\ejercicio1.pas' {Form1},
-  Principal in 'Vistas\Principal.pas' {PrincipalForm};
+    Principal in 'Vistas\Principal.pas' {PrincipalForm},
+  VisualUno in 'Vistas\VisualUno.pas' {Form1},
+  VisualDos in 'Vistas\VisualDos.pas' {Form2},
+  VisualTres in 'Vistas\VisualTres.pas' {Form3};
 
 {$R *.res}
 

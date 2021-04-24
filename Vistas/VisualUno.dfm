@@ -12,6 +12,7 @@ object Form1: TForm1
   Font.Style = []
   Menu = MainMenu1
   OldCreateOrder = False
+  OnClose = FormClose
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
@@ -100,18 +101,23 @@ object Form1: TForm1
       end
       object EjercicioUno1: TMenuItem
         Caption = 'Ejercicio Uno'
+        OnClick = EjercicioUno1Click
       end
       object EjercicioDos1: TMenuItem
         Caption = 'Ejercicio Dos'
+        OnClick = EjercicioDos1Click
       end
       object EjercicioTres1: TMenuItem
         Caption = 'Ejercicio Tres'
+        OnClick = EjercicioTres1Click
       end
-      object Cuatro1: TMenuItem
+      object EjercicioCuatro1: TMenuItem
         Caption = 'Ejercicio Cuatro'
+        OnClick = EjercicioCuatro1Click
       end
       object EjercicioCinco1: TMenuItem
         Caption = 'Ejercicio Cinco'
+        OnClick = EjercicioCinco1Click
       end
       object EjercicioSeis1: TMenuItem
         Caption = 'Ejercicio Seis'

@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, ejercicio1, VisualDos, VisualTres;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus;
 
 type
   TPrincipalForm = class(TForm)
@@ -47,6 +47,7 @@ var
 implementation
 
 {$R *.dfm}
+uses VisualUno, VisualDos, VisualTres;
 
 procedure TPrincipalForm.EjercicioNueve1Click(Sender: TObject);
 begin
@@ -93,7 +94,7 @@ end;
 procedure TPrincipalForm.EjercicioUno1Click(Sender: TObject);
 begin
   PrincipalForm.Hide;
-  ejercicio1.Form1.Show;
+  VisualUno.Form1.Show;
 end;
 
 procedure TPrincipalForm.Principal1Click(Sender: TObject);

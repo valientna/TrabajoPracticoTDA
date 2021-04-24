@@ -45,11 +45,6 @@
         <Cfg_2>true</Cfg_2>
         <Base>true</Base>
     </PropertyGroup>
-    <PropertyGroup Condition="'$(Config)'=='rrrr' or '$(Cfg_8)'!=''">
-        <Cfg_8>true</Cfg_8>
-        <CfgParent>Base</CfgParent>
-        <Base>true</Base>
-    </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
         <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
         <DCC_ExeOutput>.\$(Platform)\$(Config)</DCC_ExeOutput>
@@ -105,28 +100,24 @@
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
     </PropertyGroup>
+    <Import Project="Win32\OptionSet1.optset" Condition="'$(Cfg_3)'!='' And Exists('Win32\OptionSet1.optset')"/>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
+        <DCCReference Include="Objetos\ArreglosDinamicos.pas"/>
+        <DCCReference Include="Vistas\Principal.pas">
+            <Form>PrincipalForm</Form>
+        </DCCReference>
+        <DCCReference Include="Vistas\VisualUno.pas">
+            <Form>Form1</Form>
+        </DCCReference>
         <DCCReference Include="Vistas\VisualDos.pas">
             <Form>Form2</Form>
         </DCCReference>
         <DCCReference Include="Vistas\VisualTres.pas">
             <Form>Form3</Form>
         </DCCReference>
-        <DCCReference Include="Objetos\ArreglosDinamicos.pas"/>
-        <DCCReference Include="Vistas\ejercicio1.pas">
-            <Form>Form1</Form>
-        </DCCReference>
-        <DCCReference Include="Vistas\Principal.pas">
-            <Form>PrincipalForm</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <BuildConfiguration Include="rrrr">
-            <Key>Cfg_8</Key>
-            <CfgParent>Base</CfgParent>
-        </BuildConfiguration>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
