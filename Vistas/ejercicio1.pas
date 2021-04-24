@@ -10,7 +10,12 @@ type
   TForm1 = class(TForm)
     RadioGroup1: TRadioGroup;
     Button1: TButton;
+    Button2: TButton;
+    Label1: TLabel;
+    Label2: TLabel;
     procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     n1:integer;
     n2:integer;
@@ -21,7 +26,7 @@ type
     function multiplicar(n1,n2:integer):integer;
     function dividir(n1,n2:integer):integer;
     function potenciacion(n1,n2:integer):integer;
-    function Mayor_menor_igual(n1,n2:integer):str;
+    function Mayor_menor_igual(n1,n2:integer):string;
   end;
 
 var
@@ -30,48 +35,76 @@ var
 implementation
 
 {$R *.dfm}
+
+uses VisualDos;
 function TForm1.sumar(n1,n2:integer):integer;
 var suma: integer;
 begin
-suma := n1 + n2
+  suma := n1 + n2;
+
+  sumar := suma;
 end;
 
 function TForm1.restar(n1,n2:integer):integer;
 var resta: integer;
 begin
-  resta := n1-n2
-  end;
+  resta := n1-n2;
+
+  restar := resta;
+end;
 
 function TForm1.multiplicar(n1,n2:integer):integer;
 var producto: integer;
- begin
- producto := n1*n2;
+begin
+   producto := n1*n2;
 
- end;
+   multiplicar := producto;
+end;
 
- function TForm1.dividir(n1,n2:integer):integer;
+ procedure TForm1.Button2Click(Sender: TObject);
+begin
+  //Form2.Visible := true;
+  //Form1.Visible := false;
+end;
+
+function TForm1.dividir(n1,n2:integer):integer;
 var division: integer;
 begin
-  division := n1/n2;
+  division := n1 div n2;
+
+  dividir := division;
 end;
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+  //Form1.Visible := true;
+end;
+
 function TForm1.potenciacion(n1,n2:integer):integer;
 var potencia,i : integer;
 begin
-  i = 1;
+  i := 1;
   potencia :=1;
   for i := 1 to n2 do
-    potencia := potencia *n1
+    potencia := potencia *n1;
+
+  potenciacion := potencia;
 end;
-function TForm1.Mayor_menor_igual(n1,n2:integer):str;
-var resultado : str;
+function TForm1.Mayor_menor_igual(n1,n2:integer):string;
+var resultado : string;
 begin
   if n1 > n2 then
-    resultado := 'mayor'
-    else
-      if n1 < n2 then
-        resultado := 'menor'
-        else
-          resultado := 'igual'
+  Begin
+    resultado := 'El primer valor es mayor';
+  End
+  else if n1 < n2 then
+  Begin
+    resultado := 'El primer valor es menor';
+  End
+  else
+  Begin
+    resultado := 'Los numeros son igual';
+  End;
+    Mayor_menor_igual := resultado;
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
@@ -88,27 +121,27 @@ procedure TForm1.getSelectRadButton();
 Begin
   if RadioGroup1.ItemIndex = 0 then
   Begin
-
+    Label2.Caption := sumar(n1, n2).ToString;
   End
   Else if RadioGroup1.ItemIndex = 1 then
   Begin
-
+    Label2.Caption := restar(n1, n2).ToString;
   End
   Else if RadioGroup1.ItemIndex = 2 then
   Begin
-
+    Label2.Caption := multiplicar(n1, n2).ToString;
   End
   Else if RadioGroup1.ItemIndex = 3 then
   Begin
-
+    Label2.Caption := dividir(n1, n2).ToString;
   End
   Else if RadioGroup1.ItemIndex = 4 then
   Begin
-
+    Label2.Caption := potenciacion(n1, n2).ToString;
   End
   Else if RadioGroup1.ItemIndex = 5 then
   Begin
-
+    Label2.Caption := Mayor_menor_igual(n1, n2);
   End
 End;
 
