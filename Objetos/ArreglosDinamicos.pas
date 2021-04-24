@@ -159,6 +159,7 @@ Var
    I : LongInt;
    resultado : Double;
 Begin
+  resultado := 0;
   for I := min To _nSize do
   Begin
     resultado := resultado + _Items[I];

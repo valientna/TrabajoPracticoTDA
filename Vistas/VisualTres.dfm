@@ -104,7 +104,7 @@ object Form3: TForm3
         TabOrder = 1
       end
       object StringGrid3: TStringGrid
-        Left = 209
+        Left = 232
         Top = 224
         Width = 265
         Height = 105
@@ -123,10 +123,17 @@ object Form3: TForm3
       Caption = 'Archivo'
       object Salir1: TMenuItem
         Caption = 'Salir'
+        OnClick = Salir1Click
       end
     end
     object a1: TMenuItem
       Caption = 'Forms'
+      object Principal1: TMenuItem
+        Caption = 'Principal'
+      end
+      object N1: TMenuItem
+        Caption = '-'
+      end
       object EjercicioUno1: TMenuItem
         Caption = 'Ejercicio Uno'
         OnClick = EjercicioUno1Click
@@ -144,14 +151,32 @@ object Form3: TForm3
       object EjercicioCinco1: TMenuItem
         Caption = 'Ejercicio Cinco'
       end
+      object EjercicioSeis1: TMenuItem
+        Caption = 'Ejercicio Seis'
+      end
+      object EjercicioSiete1: TMenuItem
+        Caption = 'Ejercicio Siete'
+      end
+      object EjercicioOcho1: TMenuItem
+        Caption = 'Ejercicio Ocho'
+      end
+      object EjercicioNueve1: TMenuItem
+        Caption = 'Ejercicio Nueve'
+      end
     end
     object Items1: TMenuItem
       Caption = 'Matriz'
       object CargarMatriz1: TMenuItem
         Caption = 'Cargar Matriz'
+        OnClick = CargarMatriz1Click
       end
       object SumarMatriz1: TMenuItem
         Caption = 'Sumar Matriz'
+        OnClick = SumarMatriz1Click
+      end
+      object LimpiarMatriz1: TMenuItem
+        Caption = 'Limpiar Matriz'
+        OnClick = LimpiarMatriz1Click
       end
     end
   end

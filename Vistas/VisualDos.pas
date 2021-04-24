@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, VisualTres, Vcl.StdCtrls,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
   Vcl.Menus;
 
 type
@@ -46,7 +46,7 @@ implementation
 
 {$R *.dfm}
 
-uses Principal, VisualUno;
+uses Principal, VisualUno, VisualTres;
 
 Procedure hola();
 begin
