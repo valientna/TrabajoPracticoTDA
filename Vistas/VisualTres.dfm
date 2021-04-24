@@ -43,8 +43,8 @@ object Form3: TForm3
       ExplicitWidth = 298
       ExplicitHeight = 198
       object Label1: TLabel
-        Left = 308
-        Top = 177
+        Left = 385
+        Top = 195
         Width = 70
         Height = 23
         Caption = 'Resultado'
@@ -81,6 +81,13 @@ object Form3: TForm3
         Font.Style = []
         ParentFont = False
       end
+      object Label4: TLabel
+        Left = 25
+        Top = 240
+        Width = 141
+        Height = 20
+        Caption = 'N'#176' de Filas y Columnas'
+      end
       object StringGrid1: TStringGrid
         Left = 25
         Top = 56
@@ -104,8 +111,8 @@ object Form3: TForm3
         TabOrder = 1
       end
       object StringGrid3: TStringGrid
-        Left = 232
-        Top = 224
+        Left = 385
+        Top = 232
         Width = 265
         Height = 105
         ColCount = 4
@@ -113,6 +120,51 @@ object Form3: TForm3
         RowCount = 4
         FixedRows = 0
         TabOrder = 2
+      end
+      object Edit1: TEdit
+        Left = 172
+        Top = 237
+        Width = 61
+        Height = 28
+        MaxLength = 10
+        NumbersOnly = True
+        TabOrder = 3
+        Text = 'MAX 10'
+      end
+      object Button1: TButton
+        Left = 25
+        Top = 271
+        Width = 208
+        Height = 41
+        Caption = 'Setear Filas y Columnas'
+        TabOrder = 4
+      end
+      object Button2: TButton
+        Left = 25
+        Top = 336
+        Width = 75
+        Height = 25
+        Caption = 'Cargar'
+        TabOrder = 5
+        OnClick = Button2Click
+      end
+      object Button3: TButton
+        Left = 120
+        Top = 336
+        Width = 75
+        Height = 25
+        Caption = 'Sumar'
+        TabOrder = 6
+        OnClick = Button3Click
+      end
+      object Button4: TButton
+        Left = 215
+        Top = 336
+        Width = 75
+        Height = 25
+        Caption = 'Limpiar'
+        TabOrder = 7
+        OnClick = Button4Click
       end
     end
   end

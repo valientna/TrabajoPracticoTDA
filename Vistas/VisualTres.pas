@@ -6,11 +6,11 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Grids, Vcl.Menus, Vcl.StdCtrls,
-  Vcl.WinXPanels, Vcl.ExtCtrls;
+  Vcl.WinXPanels, Vcl.ExtCtrls, Math;
 
 const
-  MaxFilas = 15;
-  MaxColumnas = 15;
+  MaxFilas = 10;
+  MaxColumnas = 10;
 
 type
   TForm3 = class(TForm)
@@ -41,6 +41,12 @@ type
     EjercicioNueve1: TMenuItem;
     LimpiarMatriz1: TMenuItem;
     StringGrid3: TStringGrid;
+    Edit1: TEdit;
+    Label4: TLabel;
+    Button1: TButton;
+    Button2: TButton;
+    Button3: TButton;
+    Button4: TButton;
     procedure CargarMatriz1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure EjercicioUno1Click(Sender: TObject);
@@ -49,19 +55,21 @@ type
     procedure SumarMatriz1Click(Sender: TObject);
     procedure LimpiarMatriz1Click(Sender: TObject);
     procedure Salir1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
   private
     { Private declarations }
-    Procedure SumarMatriz();
   public
     { Public declarations }
   end;
 
-  Matriz = array [1 .. MaxFilas, 1 .. MaxColumnas] of integer;
+  Matriz = array [0 .. MaxFilas, 0 .. MaxColumnas] of integer;
 
 var
   Form3: TForm3;
   filas, columnas: integer;
-  m1, m2, m3: matriz;
+  m1, m2, m3: Matriz;
 
 implementation
 
@@ -94,7 +102,38 @@ Begin
   End;
 End;
 
+Procedure SumaMatriz(ms : Matriz;tsGrid: TStringGrid);
+var f, c, uno, dos: integer;
+    fi, co : Integer;
+    res : Integer;
+Begin
+  uno := 0;
+  dos := 0;
+  for f := 0 to filas do
+  Begin
+    for c := 0 to columnas do
+    Begin
+      uno := m1[f][c];
+      dos := m2[f][c];
+      ms[f][c] := uno + dos;
+      obtenerFilasColumnass();
+    End;
+  End;
+  obtenerFilasColumnass();
+  res := 0;
 
+  for fi := 0 TO filas DO
+  Begin
+    for co := 0 TO columnas DO
+    Begin
+      res := ms[fi][co];
+      tsGrid.Cells[co, fi] := res.ToString;
+      obtenerFilasColumnass();
+    End;
+    res := 0;
+  End;
+
+End;
 
 Procedure LimpiarMatriz(var matriz: Matriz; tsGrid: TStringGrid);
 var
@@ -112,14 +151,32 @@ Begin
 
 End;
 
-
 // EVENTOS MAIN MENU
+
+procedure TForm3.Button2Click(Sender: TObject);
+begin
+  CargarMatriz(m1, StringGrid1);
+  CargarMatriz(m2, StringGrid2);
+  LimpiarMatriz(m3, StringGrid3);
+end;
+
+procedure TForm3.Button3Click(Sender: TObject);
+begin
+   SumaMatriz(m3, StringGrid3);
+end;
+
+procedure TForm3.Button4Click(Sender: TObject);
+begin
+  LimpiarMatriz(m1, StringGrid1);
+  LimpiarMatriz(m2, StringGrid2);
+  LimpiarMatriz(m3, StringGrid3);
+end;
 
 procedure TForm3.CargarMatriz1Click(Sender: TObject);
 begin
   CargarMatriz(m1, StringGrid1);
   CargarMatriz(m2, StringGrid2);
-
+  LimpiarMatriz(m3, StringGrid3);
 end;
 
 procedure TForm3.EjercicioUno1Click(Sender: TObject);
@@ -148,7 +205,6 @@ end;
 
 procedure TForm3.LimpiarMatriz1Click(Sender: TObject);
 begin
-
   obtenerFilasColumnass();
   LimpiarMatriz(m1, StringGrid1);
   LimpiarMatriz(m2, StringGrid2);
@@ -163,34 +219,9 @@ end;
 procedure TForm3.SumarMatriz1Click(Sender: TObject);
 begin
   //
-  SumarMatriz();
+  SumaMatriz(m3, StringGrid3);
 end;
 
-Procedure TForm3.SumarMatriz();
-var f, c, a, s: integer;
-Begin
-  for f := 0 to filas do
-  Begin
-    for c := 0 to columnas do
-    Begin
-      m3[f][c] := m1[f][c] + m2[f][c];
 
-      Write(IntToStr(m3[f][c]));
 
-      //StringGrid3.Cells[c][f] := '1';
-      obtenerFilasColumnass();
-    End;
-    Writeln('');
-  End;
-
-{  for f := 1 to filas do
-  Begin
-    for c := 1 to columnas do
-    Begin
-      StringGrid3.Cells[c][f] := m3[f][c].ToString;
-      obtenerFilasColumnass();
-    End;
-  End;}
-
-End;
 end.
