@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ExtCtrls, Vcl.StdCtrls;
 
 type
   TPrincipalForm = class(TForm)
@@ -25,6 +25,14 @@ type
     EjercicioNueve1: TMenuItem;
     Principal1: TMenuItem;
     N3: TMenuItem;
+    Panel1: TPanel;
+    EjercicioUnoBtn: TButton;
+    Label1: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    EjercicioDosBtn: TButton;
+    EjercicioTresBtn: TButton;
+    SalirBtn: TButton;
     procedure EjercicioUno1Click(Sender: TObject);
     procedure Principal1Click(Sender: TObject);
     procedure EjercicioDos1Click(Sender: TObject);
@@ -35,6 +43,11 @@ type
     procedure EjercicioSiete1Click(Sender: TObject);
     procedure EjercicioOcho1Click(Sender: TObject);
     procedure EjercicioNueve1Click(Sender: TObject);
+    procedure Salir1Click(Sender: TObject);
+    procedure EjercicioUnoBtnClick(Sender: TObject);
+    procedure EjercicioDosBtnClick(Sender: TObject);
+    procedure EjercicioTresBtnClick(Sender: TObject);
+    procedure SalirBtnClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -85,7 +98,19 @@ begin
   VisualTres.Form3.Show;
 end;
 
+procedure TPrincipalForm.EjercicioTresBtnClick(Sender: TObject);
+begin
+  PrincipalForm.Hide;
+  VisualTres.Form3.Show;
+end;
+
 procedure TPrincipalForm.EjercicioDos1Click(Sender: TObject);
+begin
+  PrincipalForm.Hide;
+  VisualDos.Form2.Show;
+end;
+
+procedure TPrincipalForm.EjercicioDosBtnClick(Sender: TObject);
 begin
   PrincipalForm.Hide;
   VisualDos.Form2.Show;
@@ -97,8 +122,24 @@ begin
   VisualUno.Form1.Show;
 end;
 
+procedure TPrincipalForm.EjercicioUnoBtnClick(Sender: TObject);
+begin
+  PrincipalForm.Hide;
+  VisualUno.Form1.Show;
+end;
+
 procedure TPrincipalForm.Principal1Click(Sender: TObject);
 begin
   PrincipalForm.Show;
 end;
+procedure TPrincipalForm.Salir1Click(Sender: TObject);
+begin
+  PrincipalForm.Close;
+end;
+
+procedure TPrincipalForm.SalirBtnClick(Sender: TObject);
+begin
+   PrincipalForm.Close;
+end;
+
 end.

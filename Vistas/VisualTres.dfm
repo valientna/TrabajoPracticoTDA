@@ -93,9 +93,9 @@ object Form3: TForm3
           object Label2: TLabel
             Left = 25
             Top = 16
-            Width = 70
+            Width = 74
             Height = 23
-            Caption = 'Resultado'
+            Caption = 'Matriz Uno'
             Font.Charset = ANSI_CHARSET
             Font.Color = clWindowText
             Font.Height = -19
@@ -106,9 +106,9 @@ object Form3: TForm3
           object Label3: TLabel
             Left = 385
             Top = 16
-            Width = 70
+            Width = 73
             Height = 23
-            Caption = 'Resultado'
+            Caption = 'Matriz Dos'
             Font.Charset = ANSI_CHARSET
             Font.Color = clWindowText
             Font.Height = -19
