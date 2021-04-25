@@ -1,7 +1,7 @@
 unit Matrices;
 
 interface
-uses Math;
+uses Math, System.SysUtils;
 
 const MIN = 0;
       MAX = 10;
@@ -21,6 +21,8 @@ Type
       Function GetDimension() : Integer;
       Function Sumar(m2 : Matriz) : Matriz;
       Function Multiply(m2 : Matriz) : Matriz;
+      Function GetMainDiagonal() : String;
+      Function GetOppositeDiagonal() : String;
 
   End;
 
@@ -70,7 +72,6 @@ Begin
       m3._Item[rows,cols] := _Item[rows,cols] + m2._Item[rows,cols];
     End;
 
-
   Sumar := m3;
 End;
 
@@ -97,10 +98,38 @@ Begin
 
       End;
     End;
-
-
-
   Multiply := m3;
 End;
 
+Function Matriz.GetMainDiagonal() : String;
+Var i : Integer;
+    MainDiagonal : String;
+Begin
+  MainDiagonal := '';
+
+  for i := MIN TO _Size DO
+  Begin
+    MainDiagonal := MainDiagonal + IntToStr(_Item[i, i]);
+  End;
+
+  GetMainDiagonal := result;
+End;
+
+Function Matriz.GetOppositeDiagonal() : String;
+Var rows, cols : Integer;
+    OppositeDiagonal : String;
+Begin
+  OppositeDiagonal := '';
+  cols := _Size;
+
+  for rows := MIN TO _Size DO
+  Begin
+    OppositeDiagonal := OppositeDiagonal + IntToStr(_Item[rows, cols]);
+    cols := cols - 1;
+  End;
+  GetOppositeDiagonal := OppositeDiagonal;
+End;
+
+
+    //asd
 end.

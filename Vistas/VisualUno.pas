@@ -140,7 +140,6 @@ end;
 function TForm1.potenciacion(n1,n22:integer):integer;
 var potencia,i : integer;
 begin
-  i := 1;
   potencia :=1;
   for i := 1 to n22 do
     potencia := potencia *n1;
