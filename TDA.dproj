@@ -123,6 +123,7 @@
         <DCCReference Include="Vistas\VisualTres.pas">
             <Form>Form3</Form>
         </DCCReference>
+        <DCCReference Include="Objetos\Matrices.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
