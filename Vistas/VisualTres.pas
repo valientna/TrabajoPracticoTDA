@@ -3,14 +3,10 @@ unit VisualTres;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-  System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Grids, Vcl.Menus, Vcl.StdCtrls,
-  Vcl.WinXPanels, Vcl.ExtCtrls, Math, Vcl.ComCtrls;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Grids, Vcl.Menus, Vcl.StdCtrls,
+  Vcl.WinXPanels, Vcl.ExtCtrls, Math, Vcl.ComCtrls, Matrices;
 
-const
-  MaxFilas = 10;
-  MaxColumnas = 10;
 
 type
   TForm3 = class(TForm)
@@ -45,11 +41,14 @@ type
     Label4: TLabel;
     Button1: TButton;
     Button2: TButton;
-    Button3: TButton;
+    SumarBtn: TButton;
     Button4: TButton;
     TabControl1: TTabControl;
     Panel1: TPanel;
     Panel2: TPanel;
+    SetearFilasyColumnas1: TMenuItem;
+    CargarManualBtn: TButton;
+    MultiplicarBtn: TButton;
     procedure CargarMatriz1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure EjercicioUno1Click(Sender: TObject);
@@ -58,23 +57,37 @@ type
     procedure SumarMatriz1Click(Sender: TObject);
     procedure LimpiarMatriz1Click(Sender: TObject);
     procedure Salir1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
+    procedure SumarBtnClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure TabControl1Change(Sender: TObject);
+    procedure SetearFilasyColumnas1Click(Sender: TObject);
+    procedure CargarRandomBtnClick(Sender: TObject);
+    procedure CargarManualBtnClick(Sender: TObject);
+    procedure MultiplicarBtnClick(Sender: TObject);
+
   private
     { Private declarations }
+    var  _filas, _columnas: integer;
+
+    { PROCEDURE AND FUNCTION}
+    procedure UpdateRowsAndCols(var ma1 : TStringGrid);
+    procedure SetRowsAndCols();
+    Procedure LimpiarMatriz(var tsGrid: TStringGrid; mat : Matriz);
+    Procedure getValueGrid(var mat : Matriz; grid : TStringGrid);
+    Procedure Sumar();
+    Procedure Multiplicacion();
+    Procedure CargarMatriz(mat : Matriz; var grid : TStringGrid);
   public
     { Public declarations }
+
   end;
 
-  Matriz = array [0 .. MaxFilas, 0 .. MaxColumnas] of integer;
 
 var
   Form3: TForm3;
-  filas, columnas: integer;
-  m1, m2, m3: Matriz;
+
+  mUno, mDos, mRes : Matriz;
 
 implementation
 
@@ -82,126 +95,152 @@ implementation
 
 uses Principal, VisualUno, VisualDos;
 
-Procedure ActualizarFilasColumnas(ma1, ma2, ma3: TStringGrid);
-Begin
-  ma1.ColCount := columnas;
-  ma1.RowCount := filas;
-  ma2.ColCount := columnas;
-  ma2.RowCount := filas;
-  ma3.ColCount := columnas;
-  ma3.RowCount := filas;
-End;
-
-Procedure CargarMatriz(var Matriz: Matriz; tsGrid: TStringGrid);
+// START EVENTOS DEL FORMULARIO
+Procedure TForm3.CargarMatriz(mat : Matriz; var grid : TStringGrid);
 var
   f, c: integer;
   valor: integer;
 Begin
-
-  Randomize;
-  for f := 0 to filas do
-  Begin
-    for c := 0 to columnas do
+  for f := 0 TO _filas DO
+    for c := 0 TO _columnas DO
     Begin
-      valor := 1 + Random(100);
-      Matriz[f][c] := valor;
-      tsGrid.Cells[c, f] := valor.ToString;
+      grid.Cells[c, f] := IntToStr(mat.ReturnItems(f, c));
     End;
-  End;
+
 End;
 
-Procedure SumaMatriz(ms : Matriz;tsGrid: TStringGrid);
-var f, c, uno, dos: integer;
-    fi, co : Integer;
-    res : Integer;
+procedure TForm3.UpdateRowsAndCols(var ma1 : TStringGrid);
 Begin
-  uno := 0;
-  dos := 0;
-  for f := 0 to filas do
-  Begin
-    for c := 0 to columnas do
-    Begin
-      uno := m1[f][c];
-      dos := m2[f][c];
-      ms[f][c] := uno + dos;
-    End;
-  End;
-  res := 0;
-
-  for fi := 0 TO filas DO
-  Begin
-    for co := 0 TO columnas DO
-    Begin
-      res := ms[fi][co];
-      tsGrid.Cells[co, fi] := res.ToString;
-    End;
-    res := 0;
-  End;
+  ma1.ColCount := _columnas;
+  ma1.RowCount := _filas;
 
 End;
 
-Procedure LimpiarMatriz(var matriz: Matriz; tsGrid: TStringGrid);
+Procedure TForm3.LimpiarMatriz(var tsGrid: TStringGrid; mat : Matriz);
 var
   f, c: integer;
 Begin
-  for f := 0 to filas do
+  for f := 0 to _filas do
   Begin
-    for c := 0 to columnas do
+    for c := 0 to _columnas do
     Begin
-      matriz[f][c] := 0;
+      mat.SetVaule(f, c, 0);
       tsGrid.Cells[c, f] := '0';
     End;
   End;
 
 End;
-// START EVENTOS DEL FORMULARIO
+
+Procedure TForm3.Sumar();
+var f, c: integer;
+Begin
+
+  mRes := mUno.Sumar(mDos);
+
+  for f := 0 to _filas do
+  Begin
+    for c := 0 to _columnas do
+    Begin
+      StringGrid3.Cells[c, f] := IntToStr(mRes.ReturnItems(f, c));
+    End;
+  End;
+
+end;
+
+Procedure TForm3.Multiplicacion();
+var f, c: integer;
+Begin
+  mRes := mUno.Multiply(mDos);
+
+  for f := 0 to _filas do
+    for c := 0 to _columnas do
+    Begin
+
+      StringGrid3.Cells[c, f] := IntToStr(mRes.ReturnItems(f, c));
+    End;
+End;
+
+procedure TForm3.MultiplicarBtnClick(Sender: TObject);
+begin
+  Multiplicacion();
+end;
+
 procedure TForm3.Button1Click(Sender: TObject);
-var ress: Integer;
 begin
-  ress := StrToInt(NroRowsAndColsEdit.Text);
-  filas := ress;
-  columnas := ress;
-  ActualizarFilasColumnas(StringGrid1, StringGrid2, StringGrid3);
+  SetRowsAndCols();
 end;
 
-procedure TForm3.Button2Click(Sender: TObject);
+procedure TForm3.SumarBtnClick(Sender: TObject);
 begin
-  CargarMatriz(m1, StringGrid1);
-  CargarMatriz(m2, StringGrid2);
-  LimpiarMatriz(m3, StringGrid3);
-end;
-
-procedure TForm3.Button3Click(Sender: TObject);
-begin
-   SumaMatriz(m3, StringGrid3);
+  Sumar()
 end;
 
 procedure TForm3.Button4Click(Sender: TObject);
 begin
-  LimpiarMatriz(m1, StringGrid1);
-  LimpiarMatriz(m2, StringGrid2);
-  LimpiarMatriz(m3, StringGrid3);
+  LimpiarMatriz(StringGrid1, mUno);
+  LimpiarMatriz(StringGrid2, mDos);
+  LimpiarMatriz(StringGrid3, mRes);
+end;
+
+procedure TForm3.CargarManualBtnClick(Sender: TObject);
+begin
+  getValueGrid(mUno, StringGrid1);
+  getValueGrid(mDos, StringGrid2);
 end;
 
 procedure TForm3.CargarMatriz1Click(Sender: TObject);
 begin
-  CargarMatriz(m1, StringGrid1);
-  CargarMatriz(m2, StringGrid2);
-  LimpiarMatriz(m3, StringGrid3);
+  CargarMatriz(mUno, StringGrid1);
+  CargarMatriz(mDos, StringGrid2);
+
+  LimpiarMatriz(StringGrid3, mRes);
 end;
 
-procedure TForm3.EjercicioUno1Click(Sender: TObject);
+procedure TForm3.CargarRandomBtnClick(Sender: TObject);
 begin
-  Form3.Hide;
-  Form1.Show;
+  mUno.LoadRandom(9);
+  mDos.LoadRandom(9);
+
+  CargarMatriz(mUno, StringGrid1);
+  CargarMatriz(mDos, StringGrid2);
+  LimpiarMatriz(StringGrid3, mRes);
 end;
 
-procedure TForm3.EjercicioDos1Click(Sender: TObject);
+procedure TForm3.SetRowsAndCols();
+var ress: Integer;
 begin
-  Form3.Hide;
-  Form2.Show;
+  ress := StrToInt(NroRowsAndColsEdit.Text);
+
+  _filas := ress;
+  _columnas := ress;
+
+  UpdateRowsAndCols(StringGrid1);
+  UpdateRowsAndCols(StringGrid2);
+  UpdateRowsAndCols(StringGrid3);
+
+
+  mUno.SetDimension(ress);
+  mDos.SetDimension(ress);
+  mRes.SetDimension(ress);
 end;
+
+Procedure TForm3.getValueGrid(var mat : Matriz; grid : TStringGrid);
+var rows, cols, value : Integer;
+begin
+  for rows := 0 TO _filas DO
+    for cols := 0 TO _columnas DO
+    Begin
+      value := StrToInt(grid.Cells[rows, cols]);
+
+      if (grid.Cells[rows, cols] = '') Then
+        value := 0;
+
+      mat.SetVaule(rows, cols, value);
+    End;
+end;
+
 // END EVENTOS DEL FORMULARIO
+
 // START EVENTOS MAIN MENU
 procedure TForm3.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
@@ -210,15 +249,15 @@ end;
 
 procedure TForm3.FormShow(Sender: TObject);
 begin
-  filas := 4;
-  columnas := 4;
+  _filas := StringGrid1.RowCount;
+  _columnas := StringGrid1.ColCount;
 end;
 
 procedure TForm3.LimpiarMatriz1Click(Sender: TObject);
 begin
-  LimpiarMatriz(m1, StringGrid1);
-  LimpiarMatriz(m2, StringGrid2);
-  LimpiarMatriz(m3, StringGrid3);
+  LimpiarMatriz(StringGrid1, mUno);
+  LimpiarMatriz(StringGrid2, mDos);
+  LimpiarMatriz(StringGrid3, mRes);
 end;
 
 procedure TForm3.Salir1Click(Sender: TObject);
@@ -226,10 +265,29 @@ begin
   Form3.Close;
 end;
 
+procedure TForm3.EjercicioUno1Click(Sender: TObject);
+begin
+  Form3.Hide;
+  Form1.Show;
+
+end;
+
+procedure TForm3.EjercicioDos1Click(Sender: TObject);
+begin
+  Form3.Hide;
+  Form2.Show;
+end;
+
+procedure TForm3.SetearFilasyColumnas1Click(Sender: TObject);
+begin
+  SetRowsAndCols()
+end;
+
 procedure TForm3.SumarMatriz1Click(Sender: TObject);
 begin
-  SumaMatriz(m3, StringGrid3);
+  Sumar();
 end;
+
 procedure TForm3.TabControl1Change(Sender: TObject);
 begin
   if (TabControl1.TabIndex = 0)then

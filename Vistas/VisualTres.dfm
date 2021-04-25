@@ -24,13 +24,11 @@ object Form3: TForm3
     Align = alClient
     TabOrder = 0
     Tabs.Strings = (
-      'as'
-      'asd')
+      'Suma y Multiplicacion'
+      '...'
+      '...')
     TabIndex = 0
     OnChange = TabControl1Change
-    ExplicitTop = 8
-    ExplicitWidth = 741
-    ExplicitHeight = 380
     object Panel2: TPanel
       Left = 4
       Top = 31
@@ -45,9 +43,6 @@ object Form3: TForm3
       ParentCtl3D = False
       TabOrder = 0
       Visible = False
-      ExplicitLeft = 5
-      ExplicitWidth = 733
-      ExplicitHeight = 345
     end
     object Panel1: TPanel
       Left = 4
@@ -58,8 +53,6 @@ object Form3: TForm3
       BevelOuter = bvNone
       Caption = 'Panel1'
       TabOrder = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
       object CardPanel1: TCardPanel
         AlignWithMargins = True
         Left = 3
@@ -72,10 +65,6 @@ object Form3: TForm3
         BevelOuter = bvNone
         Caption = 'CardPanel1'
         TabOrder = 0
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 794
-        ExplicitHeight = 428
         object Card1: TCard
           AlignWithMargins = True
           Left = 3
@@ -88,9 +77,6 @@ object Form3: TForm3
           ParentBackground = False
           TabOrder = 0
           ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 794
-          ExplicitHeight = 428
           object Label1: TLabel
             Left = 385
             Top = 195
@@ -147,6 +133,7 @@ object Form3: TForm3
             FixedCols = 0
             RowCount = 4
             FixedRows = 0
+            Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing]
             TabOrder = 0
           end
           object StringGrid2: TStringGrid
@@ -159,6 +146,7 @@ object Form3: TForm3
             FixedCols = 0
             RowCount = 4
             FixedRows = 0
+            Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing]
             TabOrder = 1
           end
           object StringGrid3: TStringGrid
@@ -195,29 +183,47 @@ object Form3: TForm3
           object Button2: TButton
             Left = 25
             Top = 336
-            Width = 75
+            Width = 112
             Height = 25
-            Caption = 'Cargar'
+            Caption = 'Cargar Random'
             TabOrder = 5
-            OnClick = Button2Click
+            OnClick = CargarRandomBtnClick
           end
-          object Button3: TButton
-            Left = 120
-            Top = 336
+          object SumarBtn: TButton
+            Left = 25
+            Top = 376
             Width = 75
             Height = 25
             Caption = 'Sumar'
             TabOrder = 6
-            OnClick = Button3Click
+            OnClick = SumarBtnClick
           end
           object Button4: TButton
             Left = 215
-            Top = 336
+            Top = 376
             Width = 75
             Height = 25
             Caption = 'Limpiar'
             TabOrder = 7
             OnClick = Button4Click
+          end
+          object CargarManualBtn: TButton
+            Left = 172
+            Top = 336
+            Width = 116
+            Height = 25
+            Caption = 'Cargar Manual'
+            TabOrder = 8
+            OnClick = CargarManualBtnClick
+          end
+          object MultiplicarBtn: TButton
+            Left = 120
+            Top = 376
+            Width = 75
+            Height = 25
+            Caption = 'Multiplicar'
+            TabOrder = 9
+            OnClick = MultiplicarBtnClick
           end
         end
       end
@@ -272,7 +278,11 @@ object Form3: TForm3
       end
     end
     object Items1: TMenuItem
-      Caption = 'Matriz'
+      Caption = 'Operaciones Matriz'
+      object SetearFilasyColumnas1: TMenuItem
+        Caption = 'Setear Filas y Columnas'
+        OnClick = SetearFilasyColumnas1Click
+      end
       object CargarMatriz1: TMenuItem
         Caption = 'Cargar Matriz'
         OnClick = CargarMatriz1Click
