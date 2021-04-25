@@ -168,6 +168,10 @@ end;
 procedure TForm3.Button1Click(Sender: TObject);
 begin
   SetRowsAndCols();
+
+  LimpiarMatriz(StringGrid1, mUno);
+  LimpiarMatriz(StringGrid2, mDos);
+  LimpiarMatriz(StringGrid3, mRes);
 end;
 
 procedure TForm3.SumarBtnClick(Sender: TObject);
@@ -219,9 +223,9 @@ begin
   UpdateRowsAndCols(StringGrid3);
 
 
-  mUno.SetDimension(ress);
-  mDos.SetDimension(ress);
-  mRes.SetDimension(ress);
+  mUno.SetDimension(ress-1);
+  mDos.SetDimension(ress-1);
+  mRes.SetDimension(ress-1);
 end;
 
 Procedure TForm3.getValueGrid(var mat : Matriz; grid : TStringGrid);
@@ -230,9 +234,9 @@ begin
   for rows := 0 TO _filas DO
     for cols := 0 TO _columnas DO
     Begin
-      value := StrToInt(grid.Cells[rows, cols]);
+      value := StrToInt(grid.Cells[cols, rows]);
 
-      if (grid.Cells[rows, cols] = '') Then
+      if (grid.Cells[cols, rows] = '') Then
         value := 0;
 
       mat.SetVaule(rows, cols, value);

@@ -76,16 +76,28 @@ End;
 
 Function Matriz.Multiply(m2 : Matriz) : Matriz;
 var m3 : Matriz;
-    rows, cols, cs : Integer;
+    rows, cols, cs, resu, resu1 : Integer;
 Begin
   m3.Setdimension(m2.GetDimension());
-
   for rows := MIN TO _Size DO
     for cols := MIN TO _Size DO
-      for cs := MIN TO _Size DO
+    Begin
+      resu := 0;
+      resu1 := 0;
+      for cs := MIN TO (_Size) DO
       Begin
-        m3._Item[rows, cols] := m3._Item[rows, cols] + (_Item[rows, cols] * m2._Item[cs, rows]);
+        // NOTA: Puse dos variables para que no me de valores ERRONEOS
+        // Por alguna razon daba ese error y no me daba los valores correspondientes
+        // a la operacion
+        resu := _Item[rows, cs] * (m2._Item[cs, cols]);
+        resu1 := resu1 + resu;
+        //FIN NOTA
+
+        m3._Item[rows, cols] := resu1;
+
       End;
+    End;
+
 
 
   Multiply := m3;
