@@ -109,7 +109,7 @@ object PrincipalForm: TPrincipalForm
       Top = 207
       Width = 82
       Height = 25
-      Caption = 'Ejercicio 4'
+      Caption = 'Ejercicio 7'
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -21
@@ -122,7 +122,7 @@ object PrincipalForm: TPrincipalForm
       Top = 207
       Width = 82
       Height = 25
-      Caption = 'Ejercicio 4'
+      Caption = 'Ejercicio 8'
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -21
@@ -135,7 +135,7 @@ object PrincipalForm: TPrincipalForm
       Top = 207
       Width = 82
       Height = 25
-      Caption = 'Ejercicio 4'
+      Caption = 'Ejercicio 9'
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -21
@@ -228,7 +228,7 @@ object PrincipalForm: TPrincipalForm
       Height = 34
       Caption = 'Ejercicio 8'
       TabOrder = 8
-      OnClick = EjercicioUnoBtnClick
+      OnClick = EjercicioOcho1Click
     end
     object EjercicioNueveBtn: TButton
       Left = 271

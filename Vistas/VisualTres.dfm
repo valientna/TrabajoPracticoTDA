@@ -29,8 +29,6 @@ object Form3: TForm3
       'Escalar')
     TabIndex = 0
     OnChange = TabControl1Change
-    ExplicitWidth = 802
-    ExplicitHeight = 463
     object Panel2: TPanel
       Left = 4
       Top = 31
@@ -44,8 +42,6 @@ object Form3: TForm3
       ParentCtl3D = False
       TabOrder = 0
       Visible = False
-      ExplicitWidth = 794
-      ExplicitHeight = 428
     end
   end
   object Panel1: TPanel
@@ -57,10 +53,6 @@ object Form3: TForm3
     BevelOuter = bvNone
     Caption = 'Panel1'
     TabOrder = 1
-    ExplicitLeft = 4
-    ExplicitTop = 31
-    ExplicitWidth = 685
-    ExplicitHeight = 485
     object CardPanel1: TCardPanel
       Left = 0
       Top = 0
@@ -72,10 +64,6 @@ object Form3: TForm3
       BevelOuter = bvNone
       Caption = 'CardPanel1'
       TabOrder = 0
-      ExplicitLeft = 3
-      ExplicitTop = 3
-      ExplicitWidth = 679
-      ExplicitHeight = 479
       object Card1: TCard
         Left = 0
         Top = 0
@@ -86,10 +74,6 @@ object Form3: TForm3
         Color = clWhite
         ParentBackground = False
         TabOrder = 0
-        ExplicitLeft = 3
-        ExplicitTop = 3
-        ExplicitWidth = 673
-        ExplicitHeight = 473
         object Label1: TLabel
           Left = 385
           Top = 195

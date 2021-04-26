@@ -87,9 +87,12 @@ begin
   VisualNueve.Form9.Show;
 end;
 procedure TPrincipalForm.EjercicioOcho1Click(Sender: TObject);
-
+var a : TControl;
 begin
 //
+  ShowMessage('lkjkljlkjlkjlkj');
+
+
 end;
 
 procedure TPrincipalForm.EjercicioSeis1Click(Sender: TObject);
