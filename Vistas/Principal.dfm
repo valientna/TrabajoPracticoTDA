@@ -3,8 +3,8 @@ object PrincipalForm: TPrincipalForm
   Left = 0
   Top = 0
   Caption = 'Principal'
-  ClientHeight = 294
-  ClientWidth = 423
+  ClientHeight = 378
+  ClientWidth = 386
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -18,16 +18,15 @@ object PrincipalForm: TPrincipalForm
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 423
-    Height = 294
+    Width = 386
+    Height = 378
     Align = alClient
     BevelOuter = bvNone
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = -8
-    ExplicitTop = 8
-    ExplicitWidth = 434
+    ExplicitWidth = 423
+    ExplicitHeight = 294
     object Label1: TLabel
       Left = 28
       Top = 32
@@ -67,6 +66,84 @@ object PrincipalForm: TPrincipalForm
       Font.Style = []
       ParentFont = False
     end
+    object Label2: TLabel
+      Left = 28
+      Top = 120
+      Width = 82
+      Height = 25
+      Caption = 'Ejercicio 4'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -21
+      Font.Name = 'Arial Narrow'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label5: TLabel
+      Left = 148
+      Top = 120
+      Width = 82
+      Height = 25
+      Caption = 'Ejercicio 5'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -21
+      Font.Name = 'Arial Narrow'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label6: TLabel
+      Left = 271
+      Top = 120
+      Width = 82
+      Height = 25
+      Caption = 'Ejercicio 6'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -21
+      Font.Name = 'Arial Narrow'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label7: TLabel
+      Left = 28
+      Top = 207
+      Width = 82
+      Height = 25
+      Caption = 'Ejercicio 4'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -21
+      Font.Name = 'Arial Narrow'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label8: TLabel
+      Left = 148
+      Top = 207
+      Width = 82
+      Height = 25
+      Caption = 'Ejercicio 4'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -21
+      Font.Name = 'Arial Narrow'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label9: TLabel
+      Left = 271
+      Top = 207
+      Width = 82
+      Height = 25
+      Caption = 'Ejercicio 4'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -21
+      Font.Name = 'Arial Narrow'
+      Font.Style = []
+      ParentFont = False
+    end
     object EjercicioUnoBtn: TButton
       Left = 28
       Top = 63
@@ -95,8 +172,8 @@ object PrincipalForm: TPrincipalForm
       OnClick = EjercicioTresBtnClick
     end
     object SalirBtn: TButton
-      Left = 128
-      Top = 199
+      Left = 124
+      Top = 295
       Width = 129
       Height = 57
       Caption = 'Salir'
@@ -108,6 +185,60 @@ object PrincipalForm: TPrincipalForm
       ParentFont = False
       TabOrder = 3
       OnClick = SalirBtnClick
+    end
+    object EjercicioCuatroBtn: TButton
+      Left = 28
+      Top = 151
+      Width = 82
+      Height = 34
+      Caption = 'Ejercicio 4'
+      TabOrder = 4
+      OnClick = EjercicioUnoBtnClick
+    end
+    object EjercicioCincoBtn: TButton
+      Left = 148
+      Top = 151
+      Width = 82
+      Height = 34
+      Caption = 'Ejercicio 5'
+      TabOrder = 5
+      OnClick = EjercicioUnoBtnClick
+    end
+    object EjercicioSeisBtn: TButton
+      Left = 271
+      Top = 151
+      Width = 82
+      Height = 34
+      Caption = 'Ejercicio 6'
+      TabOrder = 6
+      OnClick = EjercicioUnoBtnClick
+    end
+    object EjercicioSieteBtn: TButton
+      Left = 28
+      Top = 238
+      Width = 82
+      Height = 34
+      Caption = 'Ejercicio 7'
+      TabOrder = 7
+      OnClick = EjercicioUnoBtnClick
+    end
+    object EjercicioOchoBtn: TButton
+      Left = 148
+      Top = 238
+      Width = 82
+      Height = 34
+      Caption = 'Ejercicio 8'
+      TabOrder = 8
+      OnClick = EjercicioUnoBtnClick
+    end
+    object EjercicioNueveBtn: TButton
+      Left = 271
+      Top = 238
+      Width = 82
+      Height = 34
+      Caption = 'Ejercicio 9'
+      TabOrder = 9
+      OnClick = EjercicioUnoBtnClick
     end
   end
   object MainMenu1: TMainMenu

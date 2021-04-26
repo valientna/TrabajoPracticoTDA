@@ -24,6 +24,7 @@ Type
       Function GetMainDiagonal() : String;
       Function GetOppositeDiagonal() : String;
       Function GetMaxRowsAndCols(m2 : Matriz) : Integer;
+      Function MultiplyMatrizByScalar(value : Integer) : Matriz;
 
   End;
 
@@ -147,6 +148,21 @@ Begin
         maxRowsCols := m3._Item[rows,cols];
     End;
   GetMaxRowsAndCols := maxRowsCols;
+End;
+
+Function Matriz.MultiplyMatrizByScalar(value : Integer) : Matriz;
+Var m3 : Matriz;
+    rows, cols : Integer;
+Begin
+  m3.Setdimension(m2.GetDimension());
+
+  for rows := MIN TO _Size DO
+    for cols := MIN TO _Size DO
+    Begin
+      m3._Item[rows,cols] := _Item[rows,cols] * value;
+    End;
+
+  MultiplyMatrizByScalar := m3;
 End;
 
 

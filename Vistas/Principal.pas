@@ -33,6 +33,18 @@ type
     EjercicioDosBtn: TButton;
     EjercicioTresBtn: TButton;
     SalirBtn: TButton;
+    EjercicioCuatroBtn: TButton;
+    Label2: TLabel;
+    EjercicioCincoBtn: TButton;
+    Label5: TLabel;
+    EjercicioSeisBtn: TButton;
+    Label6: TLabel;
+    Label7: TLabel;
+    EjercicioSieteBtn: TButton;
+    Label8: TLabel;
+    EjercicioOchoBtn: TButton;
+    Label9: TLabel;
+    EjercicioNueveBtn: TButton;
     procedure EjercicioUno1Click(Sender: TObject);
     procedure Principal1Click(Sender: TObject);
     procedure EjercicioDos1Click(Sender: TObject);
