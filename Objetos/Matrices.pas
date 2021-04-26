@@ -23,6 +23,7 @@ Type
       Function Multiply(m2 : Matriz) : Matriz;
       Function GetMainDiagonal() : String;
       Function GetOppositeDiagonal() : String;
+      Function GetMaxRowsAndCols(m2 : Matriz) : Integer;
 
   End;
 
@@ -40,7 +41,7 @@ Begin
 End;
 
 Procedure Matriz.LoadRandom(utill : Integer); // Carga aleatoria de la matriz
-var rows, cols : _INDICE;
+Var rows, cols : _INDICE;
 Begin
   Randomize;
   for rows := MIN TO _Size DO
@@ -61,7 +62,7 @@ Begin
 End;
 
 Function Matriz.Sumar(m2 : Matriz) : Matriz;
-var m3 : Matriz;
+Var m3 : Matriz;
     rows, cols : Integer;
 Begin
   m3.Setdimension(m2.GetDimension());
@@ -76,7 +77,7 @@ Begin
 End;
 
 Function Matriz.Multiply(m2 : Matriz) : Matriz;
-var m3 : Matriz;
+Var m3 : Matriz;
     rows, cols, cs, resu, resu1 : Integer;
 Begin
   m3.Setdimension(m2.GetDimension());
@@ -130,6 +131,23 @@ Begin
   GetOppositeDiagonal := OppositeDiagonal;
 End;
 
+Function Matriz.GetMaxRowsAndCols(m2 : Matriz) : Integer;
+Var m3 : Matriz;
+    rows, cols, maxRowsCols : Integer;
+Begin
+  m3.Setdimension(m2.GetDimension());
+  maxRowsCols := 0;
 
-    //asd
+  for rows := MIN TO _Size DO
+    for cols := MIN TO _Size DO
+    Begin
+      m3._Item[rows,cols] := _Item[rows,cols] + m2._Item[rows,cols];
+
+      if (m3._Item[rows,cols] > maxRowsCols) Then
+        maxRowsCols := m3._Item[rows,cols];
+    End;
+  GetMaxRowsAndCols := maxRowsCols;
+End;
+
+
 end.
