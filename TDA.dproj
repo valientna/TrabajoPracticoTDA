@@ -124,6 +124,10 @@
             <Form>Form3</Form>
         </DCCReference>
         <DCCReference Include="Objetos\Matrices.pas"/>
+        <DCCReference Include="Vistas\VisualNueve.pas">
+            <Form>Form9</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

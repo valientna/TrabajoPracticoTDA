@@ -49,6 +49,15 @@ type
     SetearFilasyColumnas1: TMenuItem;
     CargarManualBtn: TButton;
     MultiplicarBtn: TButton;
+    editar1Lbl: TLabel;
+    editar2Lbl: TLabel;
+    MainAndOppositeDiagonalDiagonalBtn: TButton;
+    SumRowsAndColsBtn: TButton;
+    editar3Lbl: TLabel;
+    editar4Lbl: TLabel;
+    EscalarM1Btn: TButton;
+    EscalarM2Btn: TButton;
+    Edit1: TEdit;
     procedure CargarMatriz1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure EjercicioUno1Click(Sender: TObject);
@@ -65,6 +74,12 @@ type
     procedure CargarRandomBtnClick(Sender: TObject);
     procedure CargarManualBtnClick(Sender: TObject);
     procedure MultiplicarBtnClick(Sender: TObject);
+    procedure MainAndOppositeDiagonalDiagonalBtnClick(Sender: TObject);
+    procedure SumRowsAndColsBtnClick(Sender: TObject);
+    procedure EscalarM1BtnClick(Sender: TObject);
+    procedure Edit1KeyPress(Sender: TObject; var Key: Char);
+    procedure Edit1KeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure EscalarM2BtnClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -129,6 +144,10 @@ Begin
     End;
   End;
 
+  editar1Lbl.Caption := '';
+  editar2Lbl.Caption := '';
+  editar3Lbl.Caption := '';
+  editar4Lbl.Caption := '';
 End;
 
 Procedure TForm3.Sumar();
@@ -243,6 +262,26 @@ begin
     End;
 end;
 
+procedure TForm3.SumRowsAndColsBtnClick(Sender: TObject);
+var resultado : Integer;
+begin
+  resultado := mUno.GetMaxRowsAndCols(mDos);
+
+  Sumar();
+  editar1Lbl.Caption := 'El maximo del entre la fila y la columna es: ' + resultado.ToString;
+end;
+
+procedure TForm3.MainAndOppositeDiagonalDiagonalBtnClick(Sender: TObject);
+begin
+
+  editar1Lbl.Caption := 'La diagonal M1 principal es : ' + mUno.GetMainDiagonal();
+  editar2Lbl.Caption := 'La diagonal M1 opuesta es : ' + mUno.GetOppositeDiagonal();
+
+  editar3Lbl.Caption := 'La diagonal M2 principal es : ' + mDos.GetMainDiagonal();
+  editar4Lbl.Caption := 'La diagonal M2 opuesta es : ' + mDos.GetOppositeDiagonal();
+end;
+
+
 // END EVENTOS DEL FORMULARIO
 
 // START EVENTOS MAIN MENU
@@ -273,6 +312,41 @@ procedure TForm3.EjercicioUno1Click(Sender: TObject);
 begin
   Form3.Hide;
   Form1.Show;
+end;
+
+procedure TForm3.EscalarM1BtnClick(Sender: TObject);
+Var value : Integer;
+begin
+  value := StrToInt(Edit1.Text);
+  mRes := mUno.MultiplyMatrizByScalar(value);
+
+  CargarMatriz(mRes, StringGrid3);
+end;
+
+procedure TForm3.EscalarM2BtnClick(Sender: TObject);
+Var value : Integer;
+begin
+  value := StrToInt(Edit1.Text);
+  mRes := mDos.MultiplyMatrizByScalar(value);
+
+  CargarMatriz(mRes, StringGrid3);
+end;
+
+procedure TForm3.Edit1KeyPress(Sender: TObject; var Key: Char);
+Begin
+  //
+End;
+
+procedure TForm3.Edit1KeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+Var cad : String;
+begin
+  cad := Edit1.Text;
+  cad.ToLower;
+  // NOTA: Concanete dos if porque me saltaba error al usar el and
+  if cad >= ':' Then
+    Edit1.Text := '';
+  if cad < '-' Then
+    Edit1.Text := '';
 
 end;
 

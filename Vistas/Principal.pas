@@ -60,6 +60,7 @@ type
     procedure EjercicioDosBtnClick(Sender: TObject);
     procedure EjercicioTresBtnClick(Sender: TObject);
     procedure SalirBtnClick(Sender: TObject);
+    procedure Ejercicio9Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -72,14 +73,21 @@ var
 implementation
 
 {$R *.dfm}
-uses VisualUno, VisualDos, VisualTres;
+uses VisualUno, VisualDos, VisualTres, VisualNueve;
 
 procedure TPrincipalForm.EjercicioNueve1Click(Sender: TObject);
 begin
-//
+  PrincipalForm.Hide;
+  VisualNueve.Form9.Show;
 end;
 
+procedure TPrincipalForm.Ejercicio9Click(Sender: TObject);
+begin
+  PrincipalForm.Hide;
+  VisualNueve.Form9.Show;
+end;
 procedure TPrincipalForm.EjercicioOcho1Click(Sender: TObject);
+
 begin
 //
 end;

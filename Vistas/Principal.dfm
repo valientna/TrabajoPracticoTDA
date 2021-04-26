@@ -1,7 +1,7 @@
 object PrincipalForm: TPrincipalForm
   AlignWithMargins = True
-  Left = 0
-  Top = 0
+  Left = 439
+  Top = 110
   Caption = 'Principal'
   ClientHeight = 378
   ClientWidth = 386
@@ -13,6 +13,7 @@ object PrincipalForm: TPrincipalForm
   Font.Style = []
   Menu = MainMenu1
   OldCreateOrder = False
+  Position = poDesigned
   PixelsPerInch = 96
   TextHeight = 20
   object Panel1: TPanel
@@ -25,8 +26,6 @@ object PrincipalForm: TPrincipalForm
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
-    ExplicitWidth = 423
-    ExplicitHeight = 294
     object Label1: TLabel
       Left = 28
       Top = 32
@@ -238,7 +237,7 @@ object PrincipalForm: TPrincipalForm
       Height = 34
       Caption = 'Ejercicio 9'
       TabOrder = 9
-      OnClick = EjercicioUnoBtnClick
+      OnClick = Ejercicio9Click
     end
   end
   object MainMenu1: TMainMenu

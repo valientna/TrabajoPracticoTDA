@@ -112,9 +112,13 @@ Begin
   for i := MIN TO _Size DO
   Begin
     MainDiagonal := MainDiagonal + IntToStr(_Item[i, i]);
+    if (i <> _Size) Then
+      MainDiagonal := MainDiagonal + ', ';
   End;
 
-  GetMainDiagonal := result;
+  MainDiagonal := MainDiagonal;
+
+  GetMainDiagonal := MainDiagonal;
 End;
 
 Function Matriz.GetOppositeDiagonal() : String;
@@ -128,6 +132,8 @@ Begin
   Begin
     OppositeDiagonal := OppositeDiagonal + IntToStr(_Item[rows, cols]);
     cols := cols - 1;
+    if (rows <> _Size) Then
+      OppositeDiagonal := OppositeDiagonal + ', ';
   End;
   GetOppositeDiagonal := OppositeDiagonal;
 End;
@@ -154,7 +160,7 @@ Function Matriz.MultiplyMatrizByScalar(value : Integer) : Matriz;
 Var m3 : Matriz;
     rows, cols : Integer;
 Begin
-  m3.Setdimension(m2.GetDimension());
+  m3.Setdimension(_Size);
 
   for rows := MIN TO _Size DO
     for cols := MIN TO _Size DO
