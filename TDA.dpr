@@ -8,7 +8,8 @@ uses
   VisualDos in 'Vistas\VisualDos.pas' {Form2},
   VisualTres in 'Vistas\VisualTres.pas' {Form3},
   Matrices in 'Objetos\Matrices.pas',
-  VisualNueve in 'Vistas\VisualNueve.pas' {Form9};
+  VisualNueve in 'Vistas\VisualNueve.pas' {Form9},
+  CajaRegistradora in 'Objetos\CajaRegistradora.pas';
 
 {$R *.res}
 
