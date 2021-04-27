@@ -7,7 +7,7 @@ const MIN = 0;
       MAX = 10;
 
 Type
-  _INDICE = MIN..MAX;  // Subrango
+  _INDICE = MIN..MAX;
 
   Matriz = Object
     Private
