@@ -26,16 +26,12 @@ type
     EjercicioTres1: TMenuItem;
     Cuatro1: TMenuItem;
     EjercicioCinco1: TMenuItem;
-    Items1: TMenuItem;
-    CargarMatriz1: TMenuItem;
-    SumarMatriz1: TMenuItem;
     N1: TMenuItem;
     Principal1: TMenuItem;
     EjercicioSeis1: TMenuItem;
     EjercicioSiete1: TMenuItem;
     EjercicioOcho1: TMenuItem;
     EjercicioNueve1: TMenuItem;
-    LimpiarMatriz1: TMenuItem;
     StringGrid3: TStringGrid;
     NroRowsAndColsEdit: TEdit;
     Label4: TLabel;
@@ -46,7 +42,6 @@ type
     TabControl1: TTabControl;
     Panel1: TPanel;
     Panel2: TPanel;
-    SetearFilasyColumnas1: TMenuItem;
     CargarManualBtn: TButton;
     MultiplicarBtn: TButton;
     editar1Lbl: TLabel;
@@ -83,6 +78,7 @@ type
 
   private
     { Private declarations }
+    procedure EnabledControls();
     var  _filas, _columnas: integer;
 
     { PROCEDURE AND FUNCTION}
@@ -186,12 +182,28 @@ end;
 
 procedure TForm3.Button1Click(Sender: TObject);
 begin
+//------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------
   SetRowsAndCols();
 
   LimpiarMatriz(StringGrid1, mUno);
   LimpiarMatriz(StringGrid2, mDos);
   LimpiarMatriz(StringGrid3, mRes);
 end;
+
+procedure TForm3.EnabledControls();
+Begin
+  Button2.Enabled := true;
+  SumarBtn.Enabled := true;
+  Button4.Enabled := true;
+  CargarManualBtn.Enabled := true;
+  MultiplicarBtn.Enabled := true;
+  MainAndOppositeDiagonalDiagonalBtn.Enabled := true;
+  SumRowsAndColsBtn.Enabled := true;
+  EscalarM1Btn.Enabled := true;
+  EscalarM2Btn.Enabled := true;
+End;
 
 procedure TForm3.SumarBtnClick(Sender: TObject);
 begin

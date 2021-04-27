@@ -2,7 +2,7 @@ object Form3: TForm3
   Left = 293
   Top = 110
   Caption = 'Ejercicio 3'
-  ClientHeight = 520
+  ClientHeight = 526
   ClientWidth = 693
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
@@ -21,7 +21,7 @@ object Form3: TForm3
     Left = 0
     Top = 0
     Width = 693
-    Height = 520
+    Height = 526
     Align = alClient
     TabOrder = 0
     Tabs.Strings = (
@@ -29,11 +29,12 @@ object Form3: TForm3
       'Escalar')
     TabIndex = 0
     OnChange = TabControl1Change
+    ExplicitHeight = 520
     object Panel2: TPanel
       Left = 4
       Top = 31
       Width = 685
-      Height = 485
+      Height = 491
       Align = alClient
       BevelOuter = bvNone
       Color = clWhite
@@ -42,38 +43,42 @@ object Form3: TForm3
       ParentCtl3D = False
       TabOrder = 0
       Visible = False
+      ExplicitHeight = 485
     end
   end
   object Panel1: TPanel
     Left = 0
     Top = 0
     Width = 693
-    Height = 520
+    Height = 526
     Align = alClient
     BevelOuter = bvNone
     Caption = 'Panel1'
     TabOrder = 1
+    ExplicitHeight = 520
     object CardPanel1: TCardPanel
       Left = 0
       Top = 0
       Width = 693
-      Height = 520
+      Height = 526
       Align = alClient
       ActiveCard = Card1
       AutoSize = True
       BevelOuter = bvNone
       Caption = 'CardPanel1'
       TabOrder = 0
+      ExplicitHeight = 520
       object Card1: TCard
         Left = 0
         Top = 0
         Width = 693
-        Height = 520
+        Height = 526
         Caption = 'Card1'
         CardIndex = 0
         Color = clWhite
         ParentBackground = False
         TabOrder = 0
+        ExplicitHeight = 520
         object Label1: TLabel
           Left = 385
           Top = 195
@@ -214,24 +219,27 @@ object Form3: TForm3
           Width = 112
           Height = 25
           Caption = 'Cargar Random'
+          Enabled = False
           TabOrder = 5
           OnClick = CargarRandomBtnClick
         end
         object SumarBtn: TButton
           Left = 25
-          Top = 337
+          Top = 347
           Width = 75
           Height = 25
           Caption = 'Sumar'
+          Enabled = False
           TabOrder = 6
           OnClick = SumarBtnClick
         end
         object Button4: TButton
           Left = 215
-          Top = 337
+          Top = 347
           Width = 75
           Height = 25
           Caption = 'Limpiar'
+          Enabled = False
           TabOrder = 7
           OnClick = Button4Click
         end
@@ -241,59 +249,66 @@ object Form3: TForm3
           Width = 118
           Height = 25
           Caption = 'Cargar Manual'
+          Enabled = False
           TabOrder = 8
           OnClick = CargarManualBtnClick
         end
         object MultiplicarBtn: TButton
           Left = 120
-          Top = 337
+          Top = 347
           Width = 75
           Height = 25
           Caption = 'Multiplicar'
+          Enabled = False
           TabOrder = 9
           OnClick = MultiplicarBtnClick
         end
         object MainAndOppositeDiagonalDiagonalBtn: TButton
           Left = 25
-          Top = 376
+          Top = 392
           Width = 200
           Height = 25
           Caption = 'Diagonales Principal y Opuesta'
+          Enabled = False
           TabOrder = 10
           OnClick = MainAndOppositeDiagonalDiagonalBtnClick
         end
         object SumRowsAndColsBtn: TButton
           Left = 25
-          Top = 415
+          Top = 430
           Width = 200
           Height = 25
           Caption = 'Suma Fila y Columna Maxima'
+          Enabled = False
           TabOrder = 11
           OnClick = SumRowsAndColsBtnClick
         end
         object EscalarM1Btn: TButton
           Left = 25
-          Top = 456
+          Top = 480
           Width = 75
           Height = 25
           Caption = 'Escalar M1'
+          Enabled = False
           TabOrder = 12
           OnClick = EscalarM1BtnClick
         end
         object EscalarM2Btn: TButton
           Left = 120
-          Top = 455
+          Top = 480
           Width = 75
           Height = 25
           Caption = 'Escalar M2'
+          Enabled = False
           TabOrder = 13
           OnClick = EscalarM2BtnClick
         end
         object Edit1: TEdit
           Left = 215
-          Top = 454
+          Top = 478
           Width = 61
           Height = 28
+          Enabled = False
           MaxLength = 2
           TabOrder = 14
           Text = '2'
@@ -349,25 +364,6 @@ object Form3: TForm3
       end
       object EjercicioNueve1: TMenuItem
         Caption = 'Ejercicio Nueve'
-      end
-    end
-    object Items1: TMenuItem
-      Caption = 'Operaciones Matriz'
-      object SetearFilasyColumnas1: TMenuItem
-        Caption = 'Setear Filas y Columnas'
-        OnClick = SetearFilasyColumnas1Click
-      end
-      object CargarMatriz1: TMenuItem
-        Caption = 'Cargar Matriz'
-        OnClick = CargarMatriz1Click
-      end
-      object SumarMatriz1: TMenuItem
-        Caption = 'Sumar Matriz'
-        OnClick = SumarMatriz1Click
-      end
-      object LimpiarMatriz1: TMenuItem
-        Caption = 'Limpiar Matriz'
-        OnClick = LimpiarMatriz1Click
       end
     end
   end

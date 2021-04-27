@@ -9,7 +9,8 @@ uses
   VisualTres in 'Vistas\VisualTres.pas' {Form3},
   Matrices in 'Objetos\Matrices.pas',
   VisualNueve in 'Vistas\VisualNueve.pas' {Form9},
-  CajaRegistradora in 'Objetos\CajaRegistradora.pas';
+  CajaRegistradora in 'Objetos\CajaRegistradora.pas',
+  UVector in 'Objetos\UVector.pas';
 
 {$R *.res}
 
