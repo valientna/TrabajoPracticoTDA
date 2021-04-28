@@ -92,7 +92,6 @@ begin
 //
   ShowMessage('lkjkljlkjlkjlkj');
 
-
 end;
 
 procedure TPrincipalForm.EjercicioSeis1Click(Sender: TObject);
