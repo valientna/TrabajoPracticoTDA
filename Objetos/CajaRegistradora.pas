@@ -11,39 +11,66 @@ const MIN = 0;
       MAXIMUMCAPACITY = 100;
       TICKETS : array[0..8] of string = ('Un Peso', 'Dos Pesos', 'Cinc oPesos', 'Diez Pesos', 'Veinte Pesos',
                                       'Cincuenta Pesos', 'Cien Pesos', 'Quinientos Pesos', 'Mil Pesos' );
+{
+    
+    Aca les paso una definición de registro y vector
+  Registro = Record
+      campo1: Integer;
+      campo2: String;
+      campo3: variant;
+    End;
+
+    Vector = Array Of Registro;
+
+  Boton donde le seteo la dimension
+  procedure TForm1.Button1Click(Sender: TObject);
+  Var V: Vector;
+  begin
+    SetLength(V, 10);
+    V[1].campo1 := 100;
+  end;
+  Anda sin problema un registro con un vector dinamico
+}
 
 Type
   // NOTA: Experimento...
-  _Money = (UnPeso, DosPesos, CincoPesos, DiezPesos, VeintePesos, CincuentaPesos,
-              CienPesos, QuinientosPesos, MilPesos);
+  // _Money = (UnPeso, DosPesos, CincoPesos, DiezPesos, VeintePesos,
+  //           CincuentaPesos, CienPesos, QuinientosPesos, MilPesos);
   _INDICE = MIN..MAX;
   _Value = Array[0..1] of Integer;
   //_Billetes = Array[_INDICE] of String;
+  Registro = Record
+              money: Integer;
+              types: String;
+              status: Boolean;
+              totalMoney : Integer;
+              end;
 
-    CajasRegistradora = Object
-    Private
-      // Variables
-      // Inicilizo el array con diez moneda/billete para inicialmente poder hacer cualquier operacion
-      _Box : Array[_INDICE] of Integer;
-      _Size : _INDICE;
+  CajasRegistradora = Object
+  Private
+    // Variables private
+    _Box : Array of Registro;
+    _Size : _INDICE;
+    _Initialize : Boolean;
 
-      // Metodos / Procedimientos
-      Procedure SetTyckets(i, v1 : Integer);
+    // Metodos / Procedimientos private
+    Procedure SetTyckets(i, v1 : Integer);
+  Public
+    // Variables public
 
-    Public
-      { ACLARACION IMPORTANTE Ami personalmente me gusta trabajar mucho con sobrecargas
-        y mas en estos casos Att: Franco Fernández }
-      Procedure SetMoney(i, v1 : Integer); Overload;
-      Procedure SetMoney(i, j, v1, v2 : Integer); Overload;
+    // Metodos / Procedimientos public
+    Procedure InitializeBox();
+    Procedure SetMoney(i, v1 : Integer); Overload;
+    Procedure SetMoney(i, j, v1, v2 : Integer); Overload;
 
-      Function GetMoney(i, amount : Integer) : Integer;
-      Function GetAccountStatus(i : Integer) : String;
-      Function GetBoxStatus() : Boolean;
-      Function GetTotalAccount() : Integer;
-      Function GetTicketByType(i : Integer) : Integer;
-      Function TotalByTicketType(i : Integer) : Integer;
+    Function GetMoney(i, amount : Integer) : Integer;
+    Function GetAccountStatus(i : Integer) : String;
+    Function GetBoxStatus() : Boolean;
+    Function GetTotalAccount() : Integer;
+    Function GetTicketByType(i : Integer) : Integer;
+    Function TotalByTicketType(i : Integer) : Integer;
 
-    End;
+  End;
 
 
 implementation
@@ -51,17 +78,29 @@ implementation
 Procedure CajasRegistradora.SetTyckets(i, v1 : Integer);
 Begin
     case i of
-    0 : _Box[0] := v1;
-    1 : _Box[1] := v1;
-    2 : _Box[2] := v1;
-    3 : _Box[3] := v1;
-    4 : _Box[4] := v1;
-    5 : _Box[5] := v1;
-    6 : _Box[6] := v1;
-    7 : _Box[7] := v1;
-    8 : _Box[8] := v1;
+    0 : _Box[0].money := v1;
+    1 : _Box[1].money := v1;
+    2 : _Box[2].money := v1;
+    3 : _Box[3].money := v1;
+    4 : _Box[4].money := v1;
+    5 : _Box[5].money := v1;
+    6 : _Box[6].money := v1;
+    7 : _Box[7].money := v1;
+    8 : _Box[8].money := v1;
   End;
 End;
+
+Procedure CajasRegistradora.InitializeBox();
+Var i : Integer;
+begin
+  for i := MIN to MAX Do
+  Begin
+    _Box[i].money := 5;
+    _Box[i].types := TICKETS[i];
+    _Box[i].status := true;
+    _Box[i].totalMoney := TotalByTicketType(i);
+    End;
+end;
 
 Procedure CajasRegistradora.SetMoney(i, v1 : Integer);
 Begin
@@ -82,19 +121,19 @@ Begin
   Begin
     money := 0;
     
-    if amount > _Box[i] then
+    if amount > _Box[i].money then
       begin
         ShowMessage('No hay suficientes billetes/monedas para el monto que solicita');
       end
     else
       begin
-        WHILE GetBoxStatus() and (_Box[i] > 0) and (amount > 0) and (amount >= GetTicketByType(i)) Do
+        WHILE GetBoxStatus() and (_Box[i].money > 0) and (amount > 0) and (amount >= GetTicketByType(i)) Do
         Begin
-          _Box[i] := _Box[i] - 1;
-          money := money + GetTicketByType(i);
+          _Box[i].money := _Box[i].money - 1;
+          money := money + 1;
           amount := amount - GetTicketByType(i);
         End;
-        if amount > _Box[i] Then
+        if amount > _Box[i].money Then
         Begin
           ShowMessage('No hay suficientes billetes/monedas para el monto que solicita. '
                     + 'Monto original ' + IntToStr(OriginAmount) + ', '
@@ -119,18 +158,12 @@ End;
 
 Function CajasRegistradora.GetAccountStatus(i : Integer) : String;
 var status : String;
-    total : Integer;
 Begin
-  total := 0; 
-  total := TotalByTicketType(i);
-
   status := 'La capacidad en la caja de billete/moneda es de'
-            + TICKETS[i] + ' '
-            + IntToStr(_Box[i]) + '/100 | '
-            + 'y el saldo es de '
-            + IntToStr(total);
+            + _Box[i].types + ' '
+            + IntToStr(_Box[i].money) + '/100';
 
-  if _Box[i] = 0 Then
+  if _Box[i].money = 0 Then
     status := status + ' NO CONTIENE DINERO';
     
   GetAccountStatus := status;
@@ -140,11 +173,11 @@ Function CajasRegistradora.GetBoxStatus() : Boolean;
 Var status : Boolean;
     total : Integer;
 Begin
-  total := GetTotalAccount();
+  Maxtotal := GetTotalAccount();
 
-  if total = 0 then
+  if Maxtotaltotal = 0 then
     status := false;
-  if total <> 0 then
+  if Maxtotaltotal <> 0 then
     status := true;
 
   GetBoxStatus := status;
@@ -181,15 +214,15 @@ Function CajasRegistradora.TotalByTicketType(i : Integer) : Integer;
 Var total : Integer;
 begin
   case i of
-      0: total := _Box[i] * 1;
-      1: total := _Box[i] * 2;
-      2: total := _Box[i] * 5;
-      3: total := _Box[i] * 10;
-      4: total := _Box[i] * 20;
-      5: total := _Box[i] * 50;
-      6: total := _Box[i] * 100;
-      7: total := _Box[i] * 500;
-      8: total := _Box[i] * 1000;
+      0: total := _Box[i].money * 1;
+      1: total := _Box[i].money * 2;
+      2: total := _Box[i].money * 5;
+      3: total := _Box[i].money * 10;
+      4: total := _Box[i].money * 20;
+      5: total := _Box[i].money * 50;
+      6: total := _Box[i].money * 100;
+      7: total := _Box[i].money * 500;
+      8: total := _Box[i].money * 1000;
   End;
   TotalByTicketType := total;
 end;
