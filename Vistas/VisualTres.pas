@@ -53,6 +53,7 @@ type
     EscalarM1Btn: TButton;
     EscalarM2Btn: TButton;
     Edit1: TEdit;
+    UpDown1: TUpDown;
     procedure CargarMatriz1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure EjercicioUno1Click(Sender: TObject);
@@ -78,7 +79,9 @@ type
 
   private
     { Private declarations }
-    procedure EnabledControls();
+    procedure EnabledControls1();
+    procedure EnabledControls2();
+    procedure DisabledControls3();
     var  _filas, _columnas: integer;
 
     { PROCEDURE AND FUNCTION}
@@ -182,9 +185,8 @@ end;
 
 procedure TForm3.Button1Click(Sender: TObject);
 begin
-//------------------------------------------------------------------------------------------------------
-//------------------------------------------------------------------------------------------------------
-//------------------------------------------------------------------------------------------------------
+  EnabledControls1();
+
   SetRowsAndCols();
 
   LimpiarMatriz(StringGrid1, mUno);
@@ -192,18 +194,38 @@ begin
   LimpiarMatriz(StringGrid3, mRes);
 end;
 
-procedure TForm3.EnabledControls();
+procedure TForm3.EnabledControls1();
 Begin
   Button2.Enabled := true;
-  SumarBtn.Enabled := true;
-  Button4.Enabled := true;
   CargarManualBtn.Enabled := true;
+  //Button4.Enabled := true;
+End;
+
+procedure TForm3.EnabledControls2();
+begin
+  Button4.Enabled := true;
+  SumarBtn.Enabled := true;
   MultiplicarBtn.Enabled := true;
   MainAndOppositeDiagonalDiagonalBtn.Enabled := true;
   SumRowsAndColsBtn.Enabled := true;
   EscalarM1Btn.Enabled := true;
   EscalarM2Btn.Enabled := true;
-End;
+  Edit1.Enabled := true;
+end;
+
+procedure TForm3.DisabledControls3();
+begin
+  Button2.Enabled := false;
+  CargarManualBtn.Enabled := false;
+  Button4.Enabled := false;
+  SumarBtn.Enabled := false;
+  MultiplicarBtn.Enabled := false;
+  MainAndOppositeDiagonalDiagonalBtn.Enabled := false;
+  SumRowsAndColsBtn.Enabled := false;
+  EscalarM1Btn.Enabled := false;
+  EscalarM2Btn.Enabled := false;
+  Edit1.Enabled := false;
+end;
 
 procedure TForm3.SumarBtnClick(Sender: TObject);
 begin
@@ -212,6 +234,8 @@ end;
 
 procedure TForm3.Button4Click(Sender: TObject);
 begin
+  DisabledControls3();
+
   LimpiarMatriz(StringGrid1, mUno);
   LimpiarMatriz(StringGrid2, mDos);
   LimpiarMatriz(StringGrid3, mRes);
@@ -221,6 +245,8 @@ procedure TForm3.CargarManualBtnClick(Sender: TObject);
 begin
   getValueGrid(mUno, StringGrid1);
   getValueGrid(mDos, StringGrid2);
+
+  EnabledControls2();
 end;
 
 procedure TForm3.CargarMatriz1Click(Sender: TObject);
@@ -239,6 +265,8 @@ begin
   CargarMatriz(mUno, StringGrid1);
   CargarMatriz(mDos, StringGrid2);
   LimpiarMatriz(StringGrid3, mRes);
+
+  EnabledControls2();
 end;
 
 procedure TForm3.SetRowsAndCols();
