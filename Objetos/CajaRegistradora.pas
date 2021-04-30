@@ -46,6 +46,10 @@ Type
               totalMoney : Integer;
               end;
 
+  RegisterBox = Record
+              money: Array of Integer;
+              typess: Array of String;
+              End;
   CajasRegistradora = Object
     Private
       // Variables private
@@ -55,17 +59,18 @@ Type
 
       // Metodos / Procedimientos private
       Procedure SetTyckets(i, v1 : Integer);
+      Procedure InitializeBox(var box : RegisterBox); Overload;
       Function GetTicketsId(value1 : Integer) : Integer;
     Public
     // Variables public
 
     // Metodos / Procedimientos public
-      Procedure InitializeBox();
+      Procedure InitializeBox(); Overload;
       Procedure SetMoney(i, v1 : Integer); Overload;
       Procedure SetMoney(i, j, v1, v2 : Integer); Overload;
       Procedure UpdateStatusBox(i : Integer);
 
-      Function GetMoney(amount : Integer) : String;
+      Function GetMoney(amount : Integer) : RegisterBox;
       Function GetAccountStatus(i : Integer) : String;
       Function GetBoxStatus() : Boolean;
       Function GetTotalAccount() : Integer;
@@ -93,8 +98,9 @@ Begin
 End;
 
 Function CajasRegistradora.GetTicketsId(value1 : Integer) : Integer;
-  var i : Integer;
-  begin
+var i : Integer;
+begin
+    i := 0;
   // Si es mayor a 1000
     if value1 > GetTicketByType(8) Then
     begin
@@ -141,17 +147,27 @@ Function CajasRegistradora.GetTicketsId(value1 : Integer) : Integer;
       i := 0;
     end;
   GetTicketsId := i;
-  end;
+end;
 
 Procedure CajasRegistradora.InitializeBox();
 Var i : Integer;
 begin
   for i := MIN to MAX Do
   Begin
-    _Box[i].money := 5;
+    _Box[i].money := 0;
     _Box[i].types := TICKETS[i];
     _Box[i].status := true;
     _Box[i].totalMoney := TotalByTicketType(i);
+    End;
+end;
+
+Procedure CajasRegistradora.InitializeBox(var box : RegisterBox);
+Var i : Integer;
+begin
+  for i := MIN to MAX Do
+  Begin
+    box.money[i] := 0;
+    box.typess[i] := TICKETS[i];
     End;
 end;
 
@@ -174,31 +190,40 @@ begin
     _Box[i].status := false;
 end;
 
-Function CajasRegistradora.GetMoney(amount : Integer) : String;
-Var moneyBack : String;
-    OriginAmount, i, resut : Integer;
+Function CajasRegistradora.GetMoney(amount : Integer) : RegisterBox;
+Var moneyBack : RegisterBox;
+    i : Integer;
+    bol : Boolean;
 Begin
-  OriginAmount := amount;
-  moneyBack := 'Su vuelto son ';
-  resut := 0;
+  InitializeBox(moneyBack);
   i := GetTicketsId(amount);
+  bol := GetBoxStatus();
 
-  while GetBoxStatus() and (amount > 0) Do
+  moneyBack.money[1] := 1;
+
+  while bol and (amount > 0) Do
   Begin
-    while (_Box[i].status) and (amount > 0) Do
+    while (_Box[i].status) and (amount > 0) and (amount >= GetTicketByType(i)) Do
     Begin
-      
+      //moneyBack[i].money := moneyBack[i].money + 1;
+      _Box[i].money := _Box[i].money - 1;
+      amount := amount - GetTicketByType(i);
       UpdateStatusBox(i);
     End;
+    i := GetTicketsId(amount);
+    bol := GetBoxStatus();
   End;
 
-  GetMoney := moneyBack;//temp
+  if amount > 0 Then
+    ShowMessage('NO HAY SUFICIENTES FONDOS \r\n ' + 'Faltando devolver' + IntToStr(amount));
+
+  GetMoney := moneyBack;
 End;
 
 Function CajasRegistradora.GetAccountStatus(i : Integer) : String;
 var status : String;
 Begin
-  status := 'La capacidad en la caja de billete/moneda es de'
+  status := 'La capacidad en la caja de billete/moneda es de '
             + _Box[i].types + ' '
             + IntToStr(_Box[i].money) + '/100';
 

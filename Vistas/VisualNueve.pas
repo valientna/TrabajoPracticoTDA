@@ -37,8 +37,13 @@ End;
 
 
 procedure TForm9.Button1Click(Sender: TObject);
+Var cadena : string;
+    i : integer;
 begin
-///asd
+  cadena := 'Hola Mundo';
+
+  for i := 0 to (cadena.Length-1) do
+    Memo1.Lines.Add(cadena[i]);
 
   Memo1.Lines.Add('asd');
 end;

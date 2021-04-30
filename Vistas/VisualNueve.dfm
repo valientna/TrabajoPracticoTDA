@@ -15,12 +15,14 @@ object Form9: TForm9
   PixelsPerInch = 96
   TextHeight = 13
   object Memo1: TMemo
-    Left = 32
-    Top = 48
-    Width = 185
-    Height = 89
+    Left = 24
+    Top = 24
+    Width = 201
+    Height = 146
     Lines.Strings = (
       'Memo1')
+    ReadOnly = True
+    ScrollBars = ssVertical
     TabOrder = 0
   end
   object Button1: TButton
