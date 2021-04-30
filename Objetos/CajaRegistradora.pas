@@ -52,12 +52,12 @@ Type
               End;
   CajasRegistradora = Object
     Private
-      // Variables private
+    // Variables private
       _Box : Array of Registro;
       _Size : _INDICE;
       _Initialize : Boolean;
 
-      // Metodos / Procedimientos private
+    // Metodos / Procedimientos private
       Procedure SetTyckets(i, v1 : Integer);
       Procedure InitializeBox(var box : RegisterBox); Overload;
       Function GetTicketsId(value1 : Integer) : Integer;
@@ -78,7 +78,7 @@ Type
       Function TotalByTicketType(i : Integer) : Integer;
 
   End;
-
+//--
 
 implementation
 
