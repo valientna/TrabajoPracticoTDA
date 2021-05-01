@@ -33,9 +33,6 @@ Visible=True
 [PagarBtn]
 Coordinates=331,71,60,51
 
-[Button1]
-Coordinates=212,71,53,51
-
 [Label1]
 Coordinates=275,71,46,51
 
@@ -48,4 +45,7 @@ Coordinates=291,10,93,51
 [MemoPagar]
 Coordinates=129,10,72,51
 Visible=True
+
+[RetirarBtn]
+Coordinates=212,71,53,51
 

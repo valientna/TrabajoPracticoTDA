@@ -70,7 +70,8 @@ Type
       Procedure SetMoney(i, j, v1, v2 : Integer); Overload;
       Procedure UpdateStatusBox(i : Integer);
 
-
+      //Function OperationError() : Boolean;
+      Function GetAmountInBoxById(i : Integer) : Integer;
       Function GetMoney(amount : Integer) : RegisterBox;
       Function InitializeBoxBack() : RegisterBox;
       Function GetAccountStatus(i : Integer) : String;
@@ -192,6 +193,11 @@ begin
     _Box[i].status := true
   else
     _Box[i].status := false;
+end;
+
+Function CajasRegistradora.GetAmountInBoxById(i : Integer) : Integer;
+begin
+  GetAmountInBoxById := _Box[i].money;
 end;
 
 Function CajasRegistradora.GetMoney(amount : Integer) : RegisterBox;

@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, CajaRegistradora, Vcl.StdCtrls,
-  Vcl.ExtCtrls, Vcl.WinXPanels;
+  Vcl.ExtCtrls, Vcl.WinXPanels, Vcl.WinXCtrls;
 
 type
   TForm9 = class(TForm)
@@ -21,13 +21,34 @@ type
     PagarBtn: TButton;
     MemoPagar: TMemo;
     MemoRetirar: TMemo;
-    Button1: TButton;
+    RetirarBtn: TButton;
     BienvenidoCard: TCard;
     Label1: TLabel;
+    SalirDeRetirarBtn: TButton;
+    RetirarEdit: TEdit;
+    Label2: TLabel;
+    Label3: TLabel;
+    SalirDePagarBtn: TButton;
+    PrincipalBtn: TButton;
+    Label4: TLabel;
+    BilleteEdit1: TEdit;
+    BilleteEdit2: TEdit;
+    BilleteComboBox1: TComboBox;
+    MasDeUnBilleteSwitch1: TToggleSwitch;
+    BilleteComboBox2: TComboBox;
+    SalirDeForm: TButton;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure PagarACajaBtnClick(Sender: TObject);
     procedure RetirarDeLaCajaBtnClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure SalirDeFormClick(Sender: TObject);
+    procedure SalirDeRetirarBtnClick(Sender: TObject);
+    procedure SalirDePagarBtnClick(Sender: TObject);
+    procedure PrincipalBtnClick(Sender: TObject);
+    procedure MasDeUnBilleteSwitch1Click(Sender: TObject);
     procedure CuentaBtnClick(Sender: TObject);
   private
   { Private declarations }
@@ -62,6 +83,7 @@ end;
 
 procedure TForm9.PagarACajaBtnClick(Sender: TObject);
 begin
+  MemoPagar.Clear;
   MemoRetirar.Clear;
 
   BienvenidoCard.Hide;
@@ -70,9 +92,21 @@ begin
 
 end;
 
+procedure TForm9.PrincipalBtnClick(Sender: TObject);
+begin
+  MemoPagar.Clear;
+  MemoRetirar.Clear;
+
+  RetirarCard.Hide;
+  PagarCard.Hide;
+  BienvenidoCard.Show;
+
+end;
+
 procedure TForm9.RetirarDeLaCajaBtnClick(Sender: TObject);
 begin
   MemoPagar.Clear;
+  MemoRetirar.Clear;
 
   BienvenidoCard.Hide;
   PagarCard.Hide;
@@ -80,18 +114,75 @@ begin
 
 end;
 
+procedure TForm9.SalirDePagarBtnClick(Sender: TObject);
+begin
+  MemoPagar.Clear;
+  MemoRetirar.Clear;
+
+  PagarCard.Hide;
+  BienvenidoCard.Show;
+end;
+
+procedure TForm9.SalirDeRetirarBtnClick(Sender: TObject);
+begin
+  MemoPagar.Clear;
+  MemoRetirar.Clear;
+
+  RetirarCard.Hide;
+  BienvenidoCard.Show;
+end;
+
+procedure TForm9.MasDeUnBilleteSwitch1Click(Sender: TObject);
+begin
+  if MasDeUnBilleteSwitch1.State = tssOff then
+  Begin
+    BilleteEdit2.Enabled := false;
+    BilleteComboBox2.Enabled := false;
+  End
+  else if MasDeUnBilleteSwitch1.State = tssOn then
+  Begin
+    BilleteEdit2.Enabled := true;
+    BilleteComboBox2.Enabled := true;
+  End;
+
+end;
+
+procedure TForm9.SalirDeFormClick(Sender: TObject);
+var opcion : Integer;
+begin
+  opcion := 0;
+  opcion := MessageDlg('¿Desea salir del ejercicio?', mtWarning, mbYesNo, 0);
+
+  case opcion of
+  6 :
+  Begin
+    Form9.Hide;
+    PrincipalForm.Show;
+  End;
+  end;
+
+end;
+
 procedure TForm9.CuentaBtnClick(Sender: TObject);
 begin
   MemoRetirar.Clear;
   MemoPagar.Clear;
-
-  ///
-  ///
 end;
 
 procedure TForm9.FormClose(Sender: TObject; var Action: TCloseAction);
+var opcion : Integer;
 begin
-  Principal.PrincipalForm.Show();
+
+  opcion := MessageDlg('¿Desea salir del ejercicio?', mtWarning, mbYesNo, 0);
+
+  case opcion of
+  6 :
+    Begin
+      Form9.Hide;
+      Principal.PrincipalForm.Show();
+    End;
+  End;
+
 end;
 
 end.

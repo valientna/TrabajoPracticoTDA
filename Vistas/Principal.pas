@@ -160,8 +160,14 @@ begin
 end;
 
 procedure TPrincipalForm.SalirBtnClick(Sender: TObject);
+var opcion : Integer;
 begin
-   PrincipalForm.Close;
+  opcion := 0;
+  opcion := MessageDlg('¿Desea salir del ejercicio?', mtWarning, mbYesNo, 0);
+
+  case opcion of
+  6 : PrincipalForm.Close;
+  end;
 end;
 
 end.
