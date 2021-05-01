@@ -46,31 +46,33 @@ Type
               totalMoney : Integer;
               end;
 
-  RegisterBox = Record
-              money: Array of Integer;
-              typess: Array of String;
+  RegisterBox = Array [0..8] of Record
+              money: Integer;
+              typess: String;
               End;
   CajasRegistradora = Object
     Private
     // Variables private
-      _Box : Array of Registro;
+      _Box : Array [MIN..MAX] of Registro;
       _Size : _INDICE;
-      _Initialize : Boolean;
+      _moneyBack : RegisterBox;
+//      _Initialize : Boolean;
 
     // Metodos / Procedimientos private
       Procedure SetTyckets(i, v1 : Integer);
-      Procedure InitializeBox(var box : RegisterBox); Overload;
       Function GetTicketsId(value1 : Integer) : Integer;
     Public
     // Variables public
 
     // Metodos / Procedimientos public
-      Procedure InitializeBox(); Overload;
+      Procedure InitializeBox();
       Procedure SetMoney(i, v1 : Integer); Overload;
       Procedure SetMoney(i, j, v1, v2 : Integer); Overload;
       Procedure UpdateStatusBox(i : Integer);
 
+
       Function GetMoney(amount : Integer) : RegisterBox;
+      Function InitializeBoxBack() : RegisterBox;
       Function GetAccountStatus(i : Integer) : String;
       Function GetBoxStatus() : Boolean;
       Function GetTotalAccount() : Integer;
@@ -154,21 +156,23 @@ Var i : Integer;
 begin
   for i := MIN to MAX Do
   Begin
-    _Box[i].money := 0;
+//    _Box[i].money := 1;
+    _Box[i].money := 1;
     _Box[i].types := TICKETS[i];
     _Box[i].status := true;
     _Box[i].totalMoney := TotalByTicketType(i);
     End;
 end;
 
-Procedure CajasRegistradora.InitializeBox(var box : RegisterBox);
+Function CajasRegistradora.InitializeBoxBack() : RegisterBox;
 Var i : Integer;
 begin
   for i := MIN to MAX Do
   Begin
-    box.money[i] := 0;
-    box.typess[i] := TICKETS[i];
+    _moneyBack[i].money := 0;
+    _moneyBack[i].typess := TICKETS[i];
     End;
+    InitializeBoxBack := _moneyBack;
 end;
 
 Procedure CajasRegistradora.SetMoney(i, v1 : Integer);
@@ -191,21 +195,17 @@ begin
 end;
 
 Function CajasRegistradora.GetMoney(amount : Integer) : RegisterBox;
-Var moneyBack : RegisterBox;
-    i : Integer;
+Var i : Integer;
     bol : Boolean;
 Begin
-  InitializeBox(moneyBack);
   i := GetTicketsId(amount);
   bol := GetBoxStatus();
-
-  moneyBack.money[1] := 1;
 
   while bol and (amount > 0) Do
   Begin
     while (_Box[i].status) and (amount > 0) and (amount >= GetTicketByType(i)) Do
     Begin
-      //moneyBack[i].money := moneyBack[i].money + 1;
+      _moneyBack[i].money := _moneyBack[i].money + 1;
       _Box[i].money := _Box[i].money - 1;
       amount := amount - GetTicketByType(i);
       UpdateStatusBox(i);
@@ -217,7 +217,7 @@ Begin
   if amount > 0 Then
     ShowMessage('NO HAY SUFICIENTES FONDOS \r\n ' + 'Faltando devolver' + IntToStr(amount));
 
-  GetMoney := moneyBack;
+    GetMoney := _moneyBack;
 End;
 
 Function CajasRegistradora.GetAccountStatus(i : Integer) : String;
