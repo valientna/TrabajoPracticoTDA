@@ -1,10 +1,10 @@
 # TrabajoPracticoTDA
-<h4>Ejercicio 1 - Nicholas </h4>
-Ejercicio 2 - Joaquín Kubisen - Completado
-Ejercicio 3 - Franco - Completado (90%)
-Ejercicio 4 - Sin Asignar
-Ejercicio 5 - Sin Asignar
-Ejercicio 6 - Na Valiente
-Ejercicio 7 - Na Valiente
-Ejercicio 8 - Nicholas - ¿?
-Ejercicio 9 - Franco - ¿?
+<h4>Ejercicio 1 - Nicholas - Completado </h4>
+<h4>Ejercicio 2 - Joaquín Kubisen - Completado </h4>
+<h4>Ejercicio 3 - Franco - Completado </h4>
+<h4>Ejercicio 4 - Sin Asignar </h4>
+<h4>Ejercicio 5 - Sin Asignar </h4>
+<h4>Ejercicio 6 - Na Valiente - Completado </h4>
+<h4>Ejercicio 7 - Na Valiente - Completado </h4>
+<h4>Ejercicio 8 - Nicholas </h4>
+<h4>Ejercicio 9 - Franco - Completado </h4>
