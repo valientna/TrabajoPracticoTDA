@@ -19,11 +19,13 @@ type
     TEnumerador2: TEdit;
     Label1: TLabel;
     TEdenominador2: TEdit;
+    Button4: TButton;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure getSelectRadButton();
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure Button4Click(Sender: TObject);
 
 
   private
@@ -131,6 +133,23 @@ begin
 end;
 
 
+
+procedure TForm1.Button4Click(Sender: TObject);
+var opcion : Integer;
+begin
+  opcion := 0;
+  opcion := MessageDlg('¿Desea salir del ejercicio?', mtWarning, mbYesNo, 0);
+
+  case opcion of
+  6 :
+    Begin
+      Form1.Hide;
+      PrincipalForm.Show;
+    End;
+  end;
+
+
+end;
 
 procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);
 begin

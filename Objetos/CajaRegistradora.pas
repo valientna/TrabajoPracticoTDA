@@ -35,9 +35,7 @@ Type
     Private
     // Variables private
       _Box : Array [MIN..MAX] of Registro;
-      _Size : _INDICE;
       _moneyBack : RegisterBox;
-//      _Initialize : Boolean;
 
     // Metodos / Procedimientos private
       Procedure SetTyckets(i, v1 : Integer);
@@ -62,22 +60,57 @@ Type
       Function TotalByTicketType(i : Integer) : Integer;
 
   End;
-//--
 
 implementation
 
 Procedure CajasRegistradora.SetTyckets(i, v1 : Integer);
 Begin
     case i of
-    0 : _Box[0].money := v1;
-    1 : _Box[1].money := v1;
-    2 : _Box[2].money := v1;
-    3 : _Box[3].money := v1;
-    4 : _Box[4].money := v1;
-    5 : _Box[5].money := v1;
-    6 : _Box[6].money := v1;
-    7 : _Box[7].money := v1;
-    8 : _Box[8].money := v1;
+    0 :
+    Begin
+      _Box[0].money := v1;
+      _Box[0].status := true;
+    End;
+    1 :
+    Begin
+      _Box[1].money := v1;
+      _Box[1].status := true;
+    End;
+    2 :
+    Begin
+      _Box[2].money := v1;
+      _Box[2].status := true;
+    End;
+    3 :
+    Begin
+      _Box[3].money := v1;
+      _Box[3].status := true;
+    End;
+    4 :
+    Begin
+      _Box[4].money := v1;
+      _Box[4].status := true;
+    End;
+    5 :
+    Begin
+      _Box[5].money := v1;
+      _Box[5].status := true;
+    End;
+    6 :
+    Begin
+      _Box[6].money := v1;
+      _Box[6].status := true;
+    End;
+    7 :
+    Begin
+      _Box[7].money := v1;
+      _Box[7].status := true;
+    End;
+    8 :
+    Begin
+      _Box[8].money := v1;
+      _Box[8].status := true;
+    End;
   End;
 End;
 
@@ -86,50 +119,53 @@ var i : Integer;
 begin
     i := 0;
   // Si es mayor a 1000
-    if value1 > GetTicketByType(8) Then
+    if (_Box[8].status) and (value1 >= GetTicketByType(8))Then
     begin
       i := 8;
     end
     // Si es mayor a 500 pero menor a 1000 pesos
-    else if (value1 >= GetTicketByType(7)) and (value1 < GetTicketByType(8)) Then
+    else if (_Box[7].status) and (value1 >= GetTicketByType(7)) Then{and (value1 < GetTicketByType(8))}
     begin
       i := 7;
     end
     // Si es mayor a 100 pero menor a 500 pesos
-    else if (value1 >= GetTicketByType(6)) and (value1 < GetTicketByType(7)) Then
+    else if (_Box[6].status) and (value1 >= GetTicketByType(6)) Then { and (value1 < GetTicketByType(7)) }
     begin
       i := 6;
     end
     // Si es mayor a 50 pero menor a 100 pesos
-    else if (value1 >= GetTicketByType(5)) and (value1 < GetTicketByType(6)) Then
+    else if (_Box[5].status) and (value1 >= GetTicketByType(5)) Then { and (value1 < GetTicketByType(6)) }
     begin
       i := 5;
     end
     // Si es mayor a 20 pero menor a 50 pesos
-    else if (value1 >= GetTicketByType(4)) and (value1 < GetTicketByType(5)) Then
+    else if (_Box[4].status) and (value1 >= GetTicketByType(4)) Then { and (value1 < GetTicketByType(5)) }
     begin
       i := 4;
     end
     // Si es mayor a 10 pero menor a 20 pesos
-    else if (value1 >= GetTicketByType(3)) and (value1 < GetTicketByType(6)) Then
+    else if (_Box[3].status) and (value1 >= GetTicketByType(3)) Then { and (value1 < GetTicketByType(6)) }
     begin
       i := 3;
     end
     // Si es mayor a 5 pero menor a 10 pesos
-    else if (value1 >= GetTicketByType(2)) and (value1 < GetTicketByType(4)) Then
+    else if (_Box[2].status) and (value1 >= GetTicketByType(2)) Then { and (value1 < GetTicketByType(4)) }
     begin
       i := 2;
     end
     // Si es mayor a 2 pero menor a 5 pesos
-    else if (value1 >= GetTicketByType(6)) and (value1 < GetTicketByType(7)) Then
+    else if (_Box[1].status) and (value1 >= GetTicketByType(6)) Then { and (value1 < GetTicketByType(7)) }
     begin
       i := 1;
     end
     // Si es igual a 1 peso
-    else if (value1 = GetTicketByType(0)) Then
+    else if (_Box[0].status) and (value1 >= GetTicketByType(0)) Then
     begin
       i := 0;
-    end;
+    end
+    else 
+      i := 20;
+
   GetTicketsId := i;
 end;
 
@@ -139,9 +175,9 @@ begin
   for i := MIN to MAX Do
   Begin
 //    _Box[i].money := 1;
-    _Box[i].money := 1;
+    _Box[i].money := 0;
     _Box[i].types := TICKETS[i];
-    _Box[i].status := true;
+    _Box[i].status := false;
     _Box[i].totalMoney := TotalByTicketType(i);
     End;
 end;
@@ -170,7 +206,7 @@ End;
 
 Procedure CajasRegistradora.UpdateStatusBox(i : Integer);
 begin
-  if GetTicketByType(i) > 0 Then
+  if _Box[i].money > 0 Then
     _Box[i].status := true
   else
     _Box[i].status := false;
@@ -199,10 +235,16 @@ Begin
     End;
     i := GetTicketsId(amount);
     bol := GetBoxStatus();
+
+    if i = 20 then
+    Begin
+      MessageDlg('Por favor!! vea el estado de la caja', mtWarning, [mbOK], 0);
+      Break;
+    End;
   End;
 
   if amount > 0 Then
-    ShowMessage('NO HAY SUFICIENTES FONDOS \r\n ' + 'Faltando devolver' + IntToStr(amount));
+    MessageDlg('NO HAY SUFICIENTES FONDOS Faltando devolver ' + IntToStr(amount) + ' pesos', mtWarning, [mbOK], 0);
 
     GetMoney := _moneyBack;
 End;
@@ -210,12 +252,9 @@ End;
 Function CajasRegistradora.GetAccountStatus(i : Integer) : String;
 var status : String;
 Begin
-  status := 'La capacidad en la caja de billete/moneda es de '
-            + _Box[i].types + ' '
-            + IntToStr(_Box[i].money) + '/100';
-
-  if _Box[i].money = 0 Then
-    status := status + ' NO CONTIENE DINERO';
+  status := 'Cantidad de billete/moneda es de '
+            + IntToStr(_Box[i].money) + ' de '
+            + _Box[i].types;
     
   GetAccountStatus := status;
 End;
@@ -237,7 +276,8 @@ End;
 Function CajasRegistradora.GetTotalAccount() : Integer;
 Var total, i : Integer;
 Begin
-  for i := MIN To _Size Do
+  total := 0;
+  for i := MIN To MAX Do
   begin
     total := total + TotalByTicketType(i);
   end;

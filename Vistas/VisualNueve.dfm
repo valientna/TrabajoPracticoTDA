@@ -1,6 +1,6 @@
 object Form9: TForm9
-  Left = 0
-  Top = 0
+  Left = 390
+  Top = 165
   Caption = 'Ejercicio 9'
   ClientHeight = 346
   ClientWidth = 572
@@ -11,6 +11,7 @@ object Form9: TForm9
   Font.Name = 'Arial Narrow'
   Font.Style = []
   OldCreateOrder = False
+  Position = poDesigned
   OnClose = FormClose
   OnShow = FormShow
   PixelsPerInch = 96
@@ -239,6 +240,7 @@ object Form9: TForm9
           Cursor = crHandPoint
           Caption = 'Retirar Dinero'
           TabOrder = 1
+          OnClick = RetirarBtnClick
         end
         object SalirDeRetirarBtn: TButton
           Left = 240

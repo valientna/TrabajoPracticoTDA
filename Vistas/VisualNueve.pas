@@ -51,6 +51,7 @@ type
     procedure MasDeUnBilleteSwitch1Click(Sender: TObject);
     procedure CuentaBtnClick(Sender: TObject);
     procedure PagarBtnClick(Sender: TObject);
+    procedure RetirarBtnClick(Sender: TObject);
   private
   { Private declarations }
     _caja1 : CajasRegistradora;
@@ -99,25 +100,49 @@ Var v1, v2, i, j : Integer;
 begin
   i := BilleteComboBox1.ItemIndex;
 
-  if (MasDeUnBilleteSwitch1.State = tssOff) and (i >= 0) and (i <= 8) then
+  if (MasDeUnBilleteSwitch1.State = tssOff) then
+  Begin
+    if (MasDeUnBilleteSwitch1.State = tssOff) and (i = 9) then
     Begin
-      ///
-      ///
+      MessageDlg('No a seleccionado el tipo de billete.', mtWarning, [mbOK], 0);
     End
-    else if (MasDeUnBilleteSwitch1.State = tssOff) and (i = 9) then
+    Else
+    Begin
+      v1 := StrToInt(BilleteEdit1.Text);
+      if v1 = 0 Then
+        MessageDlg('No ha ingresado ningun monto.', mtWarning, [mbOK], 0)
+      else
+        _caja1.SetMoney(i, v1);
+        MemoPagar.Lines.Add('Se ha cargado exitosamente');
+        MemoPagar.Lines.Add('Cantidades ingresadas del campo 1: ' + BilleteEdit1.Text + ' billetes de ' + BilleteComboBox1.Text + ' pesos');
+    End;
+  End
+  else if (MasDeUnBilleteSwitch1.State = tssOn) and (j >= 0) and (j <= 8) then
+  Begin
+    j := BilleteComboBox2.ItemIndex;
+    if (MasDeUnBilleteSwitch1.State = tssOn) and (j = 9) then
     Begin
       MessageDlg('No a seleccionado el tipo de billete.', mtWarning, [mbOK], 0)
     End
-    else if (MasDeUnBilleteSwitch1.State = tssOn) and true then
+
+    Else
     Begin
-      MessageDlg('No a seleccionado el tipo de billete.', mtWarning, [mbOK], 0)
-    End
-    else if (MasDeUnBilleteSwitch1.State = tssOn) and true then
-    Begin
-      MessageDlg('No a seleccionado el tipo de billete.', mtWarning, [mbOK], 0)
+    v1 := StrToInt(BilleteEdit1.Text);
+    v2 := StrToInt(BilleteEdit2.Text);
+    if v1 = 0 Then
+      MessageDlg('No ha ingresado ningun monto en el primer campo.', mtWarning, [mbOK], 0)
+    else if v2 = 0 Then
+      MessageDlg('No ha ingresado ningun monto en el segundo campo.', mtWarning, [mbOK], 0)
+    else
+      Begin
+      _caja1.SetMoney(i,j,v1,v2);
+      MemoPagar.Lines.Add('Se ha cargado exitosamente...');
+      MemoPagar.Lines.Add('Cantidades ingresadas del campo 1 es de ' + BilleteEdit1.Text + ' billetes de ' + BilleteComboBox1.Text + ' pesos');
+      MemoPagar.Lines.Add('Cantidades ingresadas del campo 2 es de ' + BilleteEdit2.Text + ' billetes de ' + BilleteComboBox2.Text + ' pesos');
+      End;
     End;
 
-
+  End;
 
 end;
 
@@ -129,6 +154,38 @@ begin
   RetirarCard.Hide;
   PagarCard.Hide;
   BienvenidoCard.Show;
+
+end;
+
+procedure TForm9.RetirarBtnClick(Sender: TObject);
+var monto, i : Integer;
+
+begin
+  monto := 0;
+  i := 0;
+  MemoRetirar.Clear;
+  monto := StrToInt(RetirarEdit.Text);
+
+  if monto = 0 Then
+    MessageDlg('No ha ingresado ningun monto a retirar.', mtWarning, [mbOK], 0)
+  else
+  Begin
+    if _caja1.GetBoxStatus() then
+    Begin
+      _vuelto := _caja1.GetMoney(monto);
+
+      /// NOTA: Aca se supone que tendria que traer el maximo del objeto
+      ///  no lo hice por falta de tiempo
+      for i := 0 To 8 Do
+      Begin
+        if _vuelto[i].money <> 0 Then
+          MemoRetirar.Lines.Add('Cantidad de billetes/moneda es de ' + IntToStr(_vuelto[i].money) + ' de ' + _vuelto[i].typess);
+      End;
+    End
+    else
+      MessageDlg('No hay dinero en la caja!!.', mtWarning, [mbOK], 0)
+  End;
+
 
 end;
 
@@ -193,9 +250,32 @@ begin
 end;
 
 procedure TForm9.CuentaBtnClick(Sender: TObject);
+var i : Integer;
 begin
   MemoRetirar.Clear;
   MemoPagar.Clear;
+
+  if RetirarCard.Active then
+  Begin
+    MemoRetirar.Lines.Add('---------- ESTADO DE LA CAJA ----------');
+    for i := 0 To 8 Do
+    Begin
+      MemoRetirar.Lines.Add(_caja1.GetAccountStatus(i));
+    End;
+    MemoRetirar.Lines.Add('---------------------------------------');
+  End
+  else if PagarCard.Active then
+  Begin
+    MemoPagar.Lines.Add('---------- ESTADO DE LA CAJA ----------');
+    for i := 0 To 8 Do
+    Begin
+      MemoPagar.Lines.Add(_caja1.GetAccountStatus(i));
+    End;
+    MemoPagar.Lines.Add('---------------------------------------');
+  End
+  else
+    MessageDlg('Ingrese a (PAGAR O REGISTRAR) para ver el estado de la cuenta', mtError, [mbOK], 0);
+
 end;
 
 procedure TForm9.FormClose(Sender: TObject; var Action: TCloseAction);
