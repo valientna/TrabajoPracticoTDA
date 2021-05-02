@@ -10,7 +10,8 @@ uses
   Matrices in 'Objetos\Matrices.pas',
   VisualNueve in 'Vistas\VisualNueve.pas' {Form9},
   CajaRegistradora in 'Objetos\CajaRegistradora.pas',
-  UVector in 'Objetos\UVector.pas';
+  UVector in 'Objetos\UVector.pas',
+  Numeros_Racionales in 'Objetos\Numeros_Racionales.pas';
 
 {$R *.res}
 

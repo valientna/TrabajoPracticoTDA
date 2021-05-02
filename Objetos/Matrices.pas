@@ -1,7 +1,7 @@
 unit Matrices;
 
 interface
-uses Math, System.SysUtils;
+uses Math, System.SysUtils, UVector;
 
 const MIN = 0;
       MAX = 10;
@@ -23,6 +23,9 @@ Type
       Function Multiply(m2 : Matriz) : Matriz;
       Function GetMainDiagonal() : String;
       Function GetOppositeDiagonal() : String;
+
+      Function GetMainAndOppositeDiagonalV1(vec : UVector.OBVector) : UVector.OBVector;
+
       Function GetMaxRowsAndCols(m2 : Matriz) : Integer;
       Function MultiplyMatrizByScalar(value : Integer) : Matriz;
 
@@ -137,6 +140,23 @@ Begin
   End;
   GetOppositeDiagonal := OppositeDiagonal;
 End;
+
+Function Matriz.GetMainAndOppositeDiagonalV1(vec : UVector.OBVector) : UVector.OBVector;
+Var rows, cols : Integer;
+    OppositeDiagonal : String;
+Begin
+  OppositeDiagonal := '';
+  cols := _Size;
+
+  for rows := MIN TO _Size DO
+  Begin
+    vec.CargarManualV1(0, rows, _Item[rows, rows]);
+    vec.CargarManualV1(1, rows, _Item[rows, cols]);
+    cols := cols - 1;
+  End;
+
+  GetMainAndOppositeDiagonalV1 := vec;
+end;
 
 Function Matriz.GetMaxRowsAndCols(m2 : Matriz) : Integer;
 Var m3 : Matriz;

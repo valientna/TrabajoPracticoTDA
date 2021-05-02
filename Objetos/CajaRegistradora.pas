@@ -14,9 +14,6 @@ const MIN = 0;
 
 
 Type
-  // NOTA: Experimento...
-  // _Money = (UnPeso, DosPesos, CincoPesos, DiezPesos, VeintePesos,
-  //           CincuentaPesos, CienPesos, QuinientosPesos, MilPesos);
   _INDICE = MIN..MAX;
   _Value = Array[0..1] of Integer;
   //_Billetes = Array[_INDICE] of String;

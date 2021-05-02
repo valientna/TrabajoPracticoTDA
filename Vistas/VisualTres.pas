@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Grids, Vcl.Menus, Vcl.StdCtrls,
-  Vcl.WinXPanels, Vcl.ExtCtrls, Math, Vcl.ComCtrls, Matrices;
+  Vcl.WinXPanels, Vcl.ExtCtrls, Math, Vcl.ComCtrls, Matrices, UVector;
 
 
 type
@@ -84,7 +84,7 @@ type
     procedure EnabledControls2();
     procedure DisabledControls3();
     Function ValidarMatriz(grid : TStringGrid; txt : String) : Boolean;
-    var  _filas, _columnas: integer;
+    var  _cont, _filas, _columnas: integer;
 
     { PROCEDURE AND FUNCTION}
     procedure UpdateRowsAndCols(var ma1 : TStringGrid);
@@ -102,7 +102,7 @@ type
 
 var
   Form3: TForm3;
-
+  vUno, vDos : UVector.OBVector;
   mUno, mDos, mRes : Matriz;
 
 implementation
@@ -187,6 +187,10 @@ end;
 
 procedure TForm3.Button1Click(Sender: TObject);
 begin
+//
+  vUno.SetearVector( StrToInt(NroRowsAndColsEdit.Text));
+  vdos.SetearVector( StrToInt(NroRowsAndColsEdit.Text));
+
   EnabledControls1();
 
   SetRowsAndCols();
@@ -369,6 +373,18 @@ begin
 
   editar3Lbl.Caption := 'La diagonal M2 principal es : ' + mDos.GetMainDiagonal();
   editar4Lbl.Caption := 'La diagonal M2 opuesta es : ' + mDos.GetOppositeDiagonal();
+
+  if (_cont >= 0) AND (_cont <= 2) then
+    Begin
+      MessageDlg('INFORMACION ADICIONAL. Para poder ver la relacion con el punto 2 del ejercicio' +
+             'se le recomienda usar el debug y poner un breack Point en la linea 384... Gracias!', mtInformation, [mbOK], 0);
+      _cont := _cont + 1;
+    End;
+
+  vUno := mUno.GetMainAndOppositeDiagonalV1(vUno);
+  vDos := mDos.GetMainAndOppositeDiagonalV1(vDos);
+
+
 end;
 
 
@@ -384,6 +400,7 @@ procedure TForm3.FormShow(Sender: TObject);
 begin
   _filas := StringGrid1.RowCount;
   _columnas := StringGrid1.ColCount;
+  _cont := 0;
 end;
 
 procedure TForm3.LimpiarMatriz1Click(Sender: TObject);

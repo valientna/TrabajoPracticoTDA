@@ -4,7 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ExtCtrls, Vcl.StdCtrls, Math;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ExtCtrls, Vcl.StdCtrls, Math,
+  Vcl.WinXPickers;
 
 type
   TPrincipalForm = class(TForm)
@@ -61,10 +62,12 @@ type
     procedure EjercicioTresBtnClick(Sender: TObject);
     procedure SalirBtnClick(Sender: TObject);
     procedure Ejercicio9Click(Sender: TObject);
+    procedure EjercicioCuatroBtnClick(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    procedure hola();
   end;
 
 var
@@ -74,6 +77,12 @@ implementation
 
 {$R *.dfm}
 uses VisualUno, VisualDos, VisualTres, VisualNueve;
+
+Procedure TPrincipalForm.Hola();
+begin
+//
+end;
+
 
 procedure TPrincipalForm.EjercicioNueve1Click(Sender: TObject);
 begin
@@ -109,9 +118,14 @@ begin
 //
 end;
 
+procedure TPrincipalForm.EjercicioCuatroBtnClick(Sender: TObject);
+begin
+  Hola();
+end;
+
 procedure TPrincipalForm.Cuatro1Click(Sender: TObject);
 begin
-//
+  Hola();
 end;
 
 procedure TPrincipalForm.EjercicioTres1Click(Sender: TObject);
@@ -168,6 +182,7 @@ begin
   case opcion of
   6 : PrincipalForm.Close;
   end;
+
 end;
 
 end.

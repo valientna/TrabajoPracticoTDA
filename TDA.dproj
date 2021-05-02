@@ -129,6 +129,7 @@
         </DCCReference>
         <DCCReference Include="Objetos\CajaRegistradora.pas"/>
         <DCCReference Include="Objetos\UVector.pas"/>
+        <DCCReference Include="Objetos\Numeros_Racionales.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

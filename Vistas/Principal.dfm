@@ -1,7 +1,7 @@
 object PrincipalForm: TPrincipalForm
   AlignWithMargins = True
   Left = 439
-  Top = 110
+  Top = 165
   Caption = 'Principal'
   ClientHeight = 378
   ClientWidth = 386
@@ -26,6 +26,7 @@ object PrincipalForm: TPrincipalForm
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
+    ExplicitLeft = 8
     object Label1: TLabel
       Left = 28
       Top = 32
@@ -192,7 +193,7 @@ object PrincipalForm: TPrincipalForm
       Height = 34
       Caption = 'Ejercicio 4'
       TabOrder = 4
-      OnClick = EjercicioUnoBtnClick
+      OnClick = EjercicioCuatroBtnClick
     end
     object EjercicioCincoBtn: TButton
       Left = 148
