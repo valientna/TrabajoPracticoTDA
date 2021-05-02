@@ -11,26 +11,7 @@ const MIN = 0;
       MAXIMUMCAPACITY = 100;
       TICKETS : array[0..8] of string = ('Un Peso', 'Dos Pesos', 'Cinc oPesos', 'Diez Pesos', 'Veinte Pesos',
                                       'Cincuenta Pesos', 'Cien Pesos', 'Quinientos Pesos', 'Mil Pesos' );
-{
-    
-    Aca les paso una definición de registro y vector
-  Registro = Record
-      campo1: Integer;
-      campo2: String;
-      campo3: variant;
-    End;
 
-    Vector = Array Of Registro;
-
-  Boton donde le seteo la dimension
-  procedure TForm1.Button1Click(Sender: TObject);
-  Var V: Vector;
-  begin
-    SetLength(V, 10);
-    V[1].campo1 := 100;
-  end;
-  Anda sin problema un registro con un vector dinamico
-}
 
 Type
   // NOTA: Experimento...
