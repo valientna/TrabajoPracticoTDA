@@ -154,7 +154,7 @@ Begin
     vec.CargarManualV1(1, rows, _Item[rows, cols]);
     cols := cols - 1;
   End;
-
+//1
   GetMainAndOppositeDiagonalV1 := vec;
 end;
 
