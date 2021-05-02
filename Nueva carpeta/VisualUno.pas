@@ -23,7 +23,6 @@ type
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure getSelectRadButton();
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
 
 
   private
@@ -39,7 +38,6 @@ var
 implementation
 
 {$R *.dfm}
-uses Principal;
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
@@ -131,10 +129,5 @@ begin
 end;
 
 
-
-procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  PrincipalForm.Show;
-end;
 
 END.
