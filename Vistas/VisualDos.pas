@@ -67,6 +67,7 @@ type
     procedure Button8Click(Sender: TObject);
     procedure Button11Click(Sender: TObject);
     procedure Principal1Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -361,6 +362,12 @@ OBJVector.SetearVector(strtoint(edit7.Text));
 end;
 
 
+
+procedure TForm2.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Form2.Hide;
+  PrincipalForm.Show;
+end;
 
 procedure TForm2.Principal1Click(Sender: TObject);
 begin

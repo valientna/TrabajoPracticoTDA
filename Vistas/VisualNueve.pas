@@ -110,8 +110,7 @@ begin
     End
     else if (MasDeUnBilleteSwitch1.State = tssOn) and true then
     Begin
-      ///
-      ///
+      MessageDlg('No a seleccionado el tipo de billete.', mtWarning, [mbOK], 0)
     End
     else if (MasDeUnBilleteSwitch1.State = tssOn) and true then
     Begin
@@ -212,6 +211,7 @@ begin
     End;
   End;
 
+  Principal.PrincipalForm.Show();
 end;
 
 end.
