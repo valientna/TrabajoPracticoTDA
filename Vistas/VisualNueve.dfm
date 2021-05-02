@@ -83,6 +83,7 @@ object Form9: TForm9
           Cursor = crHandPoint
           Caption = 'Pagar'
           TabOrder = 0
+          OnClick = PagarBtnClick
         end
         object MemoPagar: TMemo
           Left = 0

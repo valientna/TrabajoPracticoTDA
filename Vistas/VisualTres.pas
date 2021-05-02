@@ -54,6 +54,7 @@ type
     EscalarM2Btn: TButton;
     Edit1: TEdit;
     UpDown1: TUpDown;
+    EditLabel5: TLabel;
     procedure CargarMatriz1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure EjercicioUno1Click(Sender: TObject);
@@ -82,6 +83,7 @@ type
     procedure EnabledControls1();
     procedure EnabledControls2();
     procedure DisabledControls3();
+    Function ValidarMatriz(grid : TStringGrid; txt : String) : Boolean;
     var  _filas, _columnas: integer;
 
     { PROCEDURE AND FUNCTION}
@@ -227,6 +229,31 @@ begin
   Edit1.Enabled := false;
 end;
 
+Function TForm3.ValidarMatriz(grid : TStringGrid; txt : String) : Boolean;
+var i, j : integer;
+    res : Boolean;
+begin
+  res := false;
+
+  for i := 0 To StringGrid1.RowCount Do
+    for j := 0 To StringGrid1.RowCount Do
+    Begin
+      if (grid.Cells[i, j] >= '-0') and (grid.Cells[i, j] <= '-9999') or
+         (grid.Cells[i, j] >= '+0') and (grid.Cells[i, j] <= '+9999')or
+         (grid.Cells[i, j] >= '0') and (grid.Cells[i, j] <= '9') Then
+      Begin
+        //res := false;
+      End
+      else
+      Begin
+        res := true;
+        MessageDlg(txt + ' caracter no compatible con entero en la pocicion X' +
+                    i.ToString + ' Y' + j.ToString, mtError, [mbOK], 0);
+      End;
+    End;
+    ValidarMatriz := res;
+End;
+
 procedure TForm3.SumarBtnClick(Sender: TObject);
 begin
   Sumar()
@@ -242,9 +269,32 @@ begin
 end;
 
 procedure TForm3.CargarManualBtnClick(Sender: TObject);
+var bo1, bo2 : Boolean;
 begin
-  getValueGrid(mUno, StringGrid1);
-  getValueGrid(mDos, StringGrid2);
+  bo1 := ValidarMatriz(StringGrid1, 'En la primera matriz se encontro un');
+  bo2 := ValidarMatriz(StringGrid2, 'En la segunda matriz se encontro un');
+  if (bo1 = false) and (bo2 = false) Then
+  Begin
+    getValueGrid(mUno, StringGrid1);
+    getValueGrid(mDos, StringGrid2);
+  End
+  else if (bo1 = false) and (bo2 = true) Then
+  Begin
+    getValueGrid(mUno, StringGrid1);
+    MessageDlg('No se cargo la matriz dos por un caracter no deseado... Por favor vuelva a cargarla',
+               mtError, [mbOK], 0);
+  End
+  else if (bo1 = true) and (bo2 = false) Then
+  Begin
+    getValueGrid(mDos, StringGrid2);
+    MessageDlg('No se cargo la matriz uno por un caracter no deseado.. Por favor vuelva a cargarla',
+               mtError, [mbOK], 0);
+  End
+  else
+  Begin
+    MessageDlg('No se cargaron las matrices por dos errores... Por favor vuelva a cargarla',
+               mtError, [mbOK], 0);
+  End;
 
   EnabledControls2();
 end;
@@ -259,8 +309,8 @@ end;
 
 procedure TForm3.CargarRandomBtnClick(Sender: TObject);
 begin
-  mUno.LoadRandom(9);
-  mDos.LoadRandom(9);
+  mUno.LoadRandom(50);
+  mDos.LoadRandom(50);
 
   CargarMatriz(mUno, StringGrid1);
   CargarMatriz(mDos, StringGrid2);
@@ -308,7 +358,7 @@ begin
   resultado := mUno.GetMaxRowsAndCols(mDos);
 
   Sumar();
-  editar1Lbl.Caption := 'El maximo del entre la fila y la columna es: ' + resultado.ToString;
+  EditLabel5.Caption := 'El maximo del entre la fila y la columna es: ' + resultado.ToString;
 end;
 
 procedure TForm3.MainAndOppositeDiagonalDiagonalBtnClick(Sender: TObject);

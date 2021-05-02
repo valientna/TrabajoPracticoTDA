@@ -8,6 +8,7 @@ uses
 type
   VectorString = array of string;
   Bector = array of integer;
+
   OBVector = Object
     Private
       Vector: array of Bector;
@@ -126,9 +127,9 @@ var
 VecStrAux: VectorString;
 i, espacios : integer;
 begin
-espacios:= contarespacios(cadena);
-Setlength(VecStrAux, tamañovector);
-parseo(cadena, ' ', VecStrAux);
+  espacios:= contarespacios(cadena);
+  Setlength(VecStrAux, tamañovector);
+  parseo(cadena, ' ', VecStrAux);
 
 
 for i := 0 to tamañovector do begin

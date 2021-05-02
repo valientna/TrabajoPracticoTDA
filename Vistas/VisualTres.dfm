@@ -123,26 +123,37 @@ object Form3: TForm3
         object editar1Lbl: TLabel
           Left = 385
           Top = 352
-          Width = 4
+          Width = 15
           Height = 20
+          Caption = #191'?'
         end
         object editar2Lbl: TLabel
           Left = 385
           Top = 378
-          Width = 4
+          Width = 15
           Height = 20
+          Caption = #191'?'
         end
         object editar3Lbl: TLabel
           Left = 385
           Top = 404
-          Width = 4
+          Width = 15
           Height = 20
+          Caption = #191'?'
         end
         object editar4Lbl: TLabel
           Left = 385
           Top = 430
-          Width = 4
+          Width = 15
           Height = 20
+          Caption = #191'?'
+        end
+        object EditLabel5: TLabel
+          Left = 385
+          Top = 456
+          Width = 15
+          Height = 20
+          Caption = #191'?'
         end
         object StringGrid1: TStringGrid
           Left = 25

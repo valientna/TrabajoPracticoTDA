@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, CajaRegistradora, Vcl.StdCtrls,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, CajaRegistradora, Vcl.StdCtrls, Math,
   Vcl.ExtCtrls, Vcl.WinXPanels, Vcl.WinXCtrls;
 
 type
@@ -50,6 +50,7 @@ type
     procedure PrincipalBtnClick(Sender: TObject);
     procedure MasDeUnBilleteSwitch1Click(Sender: TObject);
     procedure CuentaBtnClick(Sender: TObject);
+    procedure PagarBtnClick(Sender: TObject);
   private
   { Private declarations }
     _caja1 : CajasRegistradora;
@@ -89,6 +90,35 @@ begin
   BienvenidoCard.Hide;
   RetirarCard.Hide;
   PagarCard.Show;
+
+end;
+
+procedure TForm9.PagarBtnClick(Sender: TObject);
+Var v1, v2, i, j : Integer;
+    res : String;
+begin
+  i := BilleteComboBox1.ItemIndex;
+
+  if (MasDeUnBilleteSwitch1.State = tssOff) and (i >= 0) and (i <= 8) then
+    Begin
+      ///
+      ///
+    End
+    else if (MasDeUnBilleteSwitch1.State = tssOff) and (i = 9) then
+    Begin
+      MessageDlg('No a seleccionado el tipo de billete.', mtWarning, [mbOK], 0)
+    End
+    else if (MasDeUnBilleteSwitch1.State = tssOn) and true then
+    Begin
+      ///
+      ///
+    End
+    else if (MasDeUnBilleteSwitch1.State = tssOn) and true then
+    Begin
+      MessageDlg('No a seleccionado el tipo de billete.', mtWarning, [mbOK], 0)
+    End;
+
+
 
 end;
 
@@ -172,7 +202,6 @@ end;
 procedure TForm9.FormClose(Sender: TObject; var Action: TCloseAction);
 var opcion : Integer;
 begin
-
   opcion := MessageDlg('¿Desea salir del ejercicio?', mtWarning, mbYesNo, 0);
 
   case opcion of
