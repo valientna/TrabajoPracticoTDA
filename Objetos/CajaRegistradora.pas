@@ -54,6 +54,7 @@ Type
       Function GetBoxStatus() : Boolean;
       Function GetTotalAccount() : Integer;
       Function GetTicketByType(i : Integer) : Integer;
+      
       Function TotalByTicketType(i : Integer) : Integer;
 
   End;
